@@ -1,0 +1,7 @@
+/js/bundle.js
+/js/bundle.min.js
+.DS_Store
+node_modules
+*.swp
+*.swo
+*.sh

@@ -2,18 +2,38 @@
   "name": "gsi-react",
   "version": "1.0.0",
   "description": "gsi frotend",
-  "main": "index.js",
+  "main": "js/app.js",
+  "dependencies": {
+    "flux": "^2.1.1",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-infinite": "^0.8.0",
+    "react-soundcloud-widget": "^2.0.4",
+    "react-youtube": "^5.0.0",
+    "uglify-js": "^2.6.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "code": "^1.4.0",
+    "envify": "^3.0.0",
+    "jest-cli": "~0.1.17",
+    "lab": "^5.5.1",
+    "reactify": "^1.1.1",
+    "watchify": "^3.7.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "watchify -o js/bundle.js -v -d js/app.js",
+    "build": "uglifyjs js/bundle.js -o js/bundle.min.js",
+    "test": "lab test"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:Oted/gsi-react.git"
+  "author": "Oted",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
   },
-  "author": "oted",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Oted/gsi-react/issues"
-  },
-  "homepage": "https://github.com/Oted/gsi-react"
+  "jest": {
+    "rootDir": "./js"
+  }
 }
