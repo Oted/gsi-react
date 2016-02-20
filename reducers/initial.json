@@ -1,0 +1,13 @@
+{
+    "search": {
+        "for": "ALL",
+        "in": [
+            {"type": "ALL", "active": true},
+            {"type": "GIF", "active": false}
+        ],
+        "from": [
+            {"type": "ALL", "active": true},
+            {"type" : "9GAG", "active":false}
+        ]
+    }
+}

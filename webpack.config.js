@@ -9,8 +9,9 @@ module.exports = {
         './index'
     ],
     output: {
-        path: __dirname + '/dist',
-        filename: 'bundle.js'
+        path: path.join( __dirname,'static'),
+        filename: 'bundle.js',
+        publicPath: '/static/'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
@@ -35,6 +36,10 @@ module.exports = {
             test: /\.css?$/,
             loaders: ['style', 'raw'],
             include: __dirname
+        },
+        {
+            test: /\.json$/,
+            loader: 'json'
         }]
     }
 };

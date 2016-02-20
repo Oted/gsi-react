@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import todos from './gsi';
+import gsi from './gsi';
 
 const rootReducer = combineReducers({
-    todos
+    gsi
 });
 
 export default rootReducer;

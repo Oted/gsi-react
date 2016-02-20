@@ -1,34 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Header from '../components/Header';
 import * as Actions from '../actions/Actions';
-
-//import Header from '../components/Header';
-//import MainSection from '../components/MainSection';
+import SearchBar from '../components/SearchBar'
 
 class GSIApp extends Component {
-  render() {
-    const { todos, actions } = this.props;
-    console.log('here');
-    return (
-      <div> 
-        <Header/>
-      </div>
-    );
-  }
+    render() {
+        const { search, actions } = this.props;
+
+        return (
+            <div>
+                <SearchBar search={search} actions={actions} />
+            </div>
+        );
+    }
 }
 
-function mapState(state) {
-  return {
-    todos: state.todos
-  };
-}
-
-function mapDispatch(dispatch) {
-  return {
-    actions: bindActionCreators(TodoActions, dispatch)
-  };
-}
-
-export default connect(mapState, mapDispatch)(GSIApp);
+export default connect()(GSIApp);
