@@ -1,20 +1,28 @@
-import { INIT } from '../constants/ActionTypes';
+import {
+    INIT,
+    TOGGLE_SEARCH_TYPE
+} from '../constants/ActionTypes';
+
+import utils from '../utils/Utils'
+
 import initial from './initial.json';
 
-export default function todos(state = initial, action) {
+export default function gsi(state = initial, action) {
     switch (action.type) {
 
-    case INIT :
-        return state;
+        case TOGGLE_SEARCH_TYPE:
+            return {
+                ...state,
+                ...state['search'][action.list].map(target => {
+                    if (action.item === target.type) {
+                        target.active = !target.active;
+                    }
 
-    // case MARK_ALL:
-        // const areAllMarked = state.every(todo => todo.marked);
-        // return state.map(todo => ({
-            // ...todo,
-            // marked: !areAllMarked
-        // }));
+                    return target;
+                })
+            }
 
-    default:
-        return state;
+        default:
+            return state;
     }
 }

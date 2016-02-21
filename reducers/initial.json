@@ -1,13 +1,35 @@
 {
     "search": {
-        "for": "ALL",
+        "for": "",
         "in": [
-            {"type": "ALL", "active": true},
-            {"type": "GIF", "active": false}
+            {
+                "type": "GIF",
+                "active": true,
+                "query": ["gif", "video"]
+            },
+            {
+                "type": "IMAGE",
+                "active": true,
+                "query": ["img"]
+            },
+            {
+                "type": "VIDEO",
+                "active": true,
+                "query": ["youtube", "vimeo"]
+            },
+            {
+                "type": "SOUNDCLOUD",
+                "active": true,
+                "query": ["soundcloud"]
+            }
         ],
         "from": [
-            {"type": "ALL", "active": true},
-            {"type" : "9GAG", "active":false}
+            {"type" : "9GAG.COM", "active":true},
+            {"type" : "INSTAGRAM.COM", "active":true},
+            {"type" : "REDDIT.COM", "active":true},
+            {"type" : "DOCUMENTARIES.COM", "active":true},
+            {"type" : "ANGRYDUCK.COM", "active":true},
+            {"type": "YOUTUBE.COM", "active": true}
         ]
     }
 }

@@ -6,14 +6,26 @@ import SearchBar from '../components/SearchBar'
 
 class GSIApp extends Component {
     render() {
-        const { search, actions } = this.props;
+        const { gsi, actions } = this.props;
 
         return (
             <div>
-                <SearchBar search={search} actions={actions} />
+                <SearchBar search={gsi.search} actions={actions} />
             </div>
         );
     }
 }
 
-export default connect()(GSIApp);
+function mapState(state) {
+    return {
+        gsi : state.gsi
+    }
+}
+
+function mapDispatch(dispatch) {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(mapState, mapDispatch)(GSIApp);

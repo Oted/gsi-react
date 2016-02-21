@@ -1,8 +1,19 @@
-import * as types from '../constants/ActionTypes';
+import {
+    TOGGLE_SEARCH_TYPE
+} from '../constants/ActionTypes';
 
-export function toggleSearchType(list) {
+export function toggleSearchType(list, item) {
     return {
-        type: types.TOGGLE_SEARCH_TYPE,
-        list: list
+        type: TOGGLE_SEARCH_TYPE,
+        list: list,
+        item: item
+    };
+}
+
+export function getItems(list, item) {
+    return {
+        type: TOGGLE_SEARCH_TYPE,
+        list: list,
+        item: item
     };
 }

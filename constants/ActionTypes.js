@@ -1,2 +1,1 @@
-export const INIT = 'INIT';
-//export const MARK_ALL = 'MARK_ALL';
+export const TOGGLE_SEARCH_TYPE = 'TOGGLE_SEARCH_TYPE';

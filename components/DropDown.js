@@ -1,14 +1,30 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux'
 
 export default class DropDown extends Component {
     render() {
+        const { list } = this.props;
+
         return (
             <div className="dropdown">
-                <button className="dropbtn">All</button>
+                <div className="dropbtn search-text">
+                    {this.props.placeholder}
+                <i className='ion-arrow-down-b arrow'></i>
+                </div>
                 <div className="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    {
+                        list.map(item =>
+                            <div className='drop-item'
+                                key={item.type}
+                                onClick={::this.props.toggleSearchType.bind(this, this.props.name, item.type)}>
+                                {item.active ?
+                                    <i className='ion-checkmark-round green'></i> :
+                                    <i className='ion-close-round red'></i>
+                                }
+                                <a className='search-text'> {item.type} </a>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         );
