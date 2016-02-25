@@ -1,7 +1,8 @@
-import { createStore, compose } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { persistState } from 'redux-devtools';
 import rootReducer from '../reducers';
 import DevTools from '../containers/DevTools';
+import thunk from 'redux-thunk';
 
 const enhancer = compose(
     DevTools.instrument(),
@@ -13,7 +14,14 @@ const enhancer = compose(
 );
 
 export default function configureStore(initialState) {
-    const store = createStore(rootReducer, initialState, enhancer);
+    const store = createStore(
+        rootReducer,
+        initialState,
+        compose(
+            applyMiddleware(thunk),
+            enhancer
+        )
+    );
 
     if (module.hot) {
         module.hot.accept('../reducers', () =>

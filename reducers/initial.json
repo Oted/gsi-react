@@ -1,35 +1,56 @@
 {
+    "items" : {},
     "search": {
+        "isLoading": false,
         "for": "",
         "in": [
             {
-                "type": "GIF",
+                "type": "GIFS",
                 "active": true,
                 "query": ["gif", "video"]
             },
             {
-                "type": "IMAGE",
+                "type": "IMAGES",
                 "active": true,
                 "query": ["img"]
             },
             {
-                "type": "VIDEO",
+                "type": "VIDEOS",
                 "active": true,
                 "query": ["youtube", "vimeo"]
             },
             {
-                "type": "SOUNDCLOUD",
+                "type": "SOUNDCLOUDS",
                 "active": true,
                 "query": ["soundcloud"]
+            },
+            {
+                "type": "TWITCHES",
+                "active": true,
+                "query": ["twitch"]
             }
         ],
         "from": [
-            {"type" : "9GAG.COM", "active":true},
-            {"type" : "INSTAGRAM.COM", "active":true},
-            {"type" : "REDDIT.COM", "active":true},
-            {"type" : "DOCUMENTARIES.COM", "active":true},
-            {"type" : "ANGRYDUCK.COM", "active":true},
-            {"type": "YOUTUBE.COM", "active": true}
+            {
+                "type" : "9GAG.COM",
+                "active": true,
+                "query": ["9gag"]
+            },
+            {
+                "type" : "INSTAGRAM.COM",
+                "active":true,
+                "query": ["instagram"]
+            },
+            {
+                "type" : "REDDIT.COM",
+                "active":true,
+                "query": ["reddit"]
+            },
+            {
+                "type": "YOUTUBE.COM",
+                "active": true,
+                "query" : ["youtube"]
+            }
         ]
     }
 }

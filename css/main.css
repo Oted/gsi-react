@@ -26,6 +26,7 @@
 }
 
 .search-input {
+    text-transform:uppercase;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     text-align:center;
@@ -40,16 +41,15 @@
 
 .search-text {
     display: -webkit-inline-box;
-    font-size: 1.5rem;
-    letter-spacing:3px;
-    padding-left:1rem;
-    padding-right:1rem;
+    font-size: 1em;
+    letter-spacing:0.2em;
+    padding-left:0.5em;
+    padding-right:0.5em;
 }
 
 .dropbtn {
     border: none;
     cursor: pointer;
-    padding:1rem;
 }
 
 .dropdown {
@@ -59,6 +59,7 @@
 }
 
 .dropdown-content {
+    z-index: 5;
     display: none;
     position: absolute;
     background-color: #f9f9f9;

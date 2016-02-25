@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions/Actions';
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/SearchBar';
+import ScrollStage from '../components/ScrollStage';
 
 class GSIApp extends Component {
     render() {
@@ -11,6 +12,7 @@ class GSIApp extends Component {
         return (
             <div>
                 <SearchBar search={gsi.search} actions={actions} />
+                <ScrollStage items={gsi.items} actions={actions} />
             </div>
         );
     }

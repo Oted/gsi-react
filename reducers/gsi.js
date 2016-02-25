@@ -1,16 +1,20 @@
-import {
-    INIT,
-    TOGGLE_SEARCH_TYPE
-} from '../constants/ActionTypes';
-
-import utils from '../utils/Utils'
-
+import * as actions from '../constants/ActionTypes';
+import * as utils from '../utils/Utils';
 import initial from './initial.json';
+import _ from 'lodash';
+
 
 export default function gsi(state = initial, action) {
+    console.log('here');
     switch (action.type) {
 
-        case TOGGLE_SEARCH_TYPE:
+        case actions.SET_SEARCH_TEXT:
+            return {
+                ...state,
+                ...state['search'].for = action.text
+            }
+
+        case actions.TOGGLE_SEARCH_TYPE:
             return {
                 ...state,
                 ...state['search'][action.list].map(target => {
@@ -21,6 +25,21 @@ export default function gsi(state = initial, action) {
                     return target;
                 })
             }
+
+        case actions.SEARCH:
+            return {
+                ...state,
+                ...state['search'].isLoading = true
+            }
+
+        case actions.GOT_ITEMS:
+            const key = 'test';
+            console.log(state);
+            const current = state.items[key] || [];
+            const newObj = {'items' : {}};
+            newObj['items'][key] = [...current, ...action.res.body];
+
+            return _.assign(state, newObj);
 
         default:
             return state;
