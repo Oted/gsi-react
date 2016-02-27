@@ -3,15 +3,17 @@ import DropDown from '../components/DropDown';
 import Infinite from 'react-infinite';
 
 export default class ScrollStage extends Component {
-    static defaultProps = {
-        items: {}
-    };
-
     buildElements() {
-        console.log(this);
-        return this.props.items['test'].map(item => {
-            return (<div>
-                <h3> item.title </h3>
+        if (!this.props.lists[this.props.query._id]) {
+            //no items to show
+            return (<div></div>);
+        }
+
+        console.log('rendering items', this.props.lists[this.props.query._id]);
+
+        return this.props.lists[this.props.query._id].items.map(item => {
+            return (<div key={item} className='scroll-item'>
+                <h3> {item.title} </h3>
             </div>)
         });
     }

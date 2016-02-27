@@ -10,6 +10,13 @@ export function toggleSearchType(list, item) {
     };
 }
 
+export function setActiveQuery(query) {
+    return {
+        type: actions.SET_ACTIVE_QUERY,
+        query: query
+    };
+}
+
 export function setSearchText(text) {
     return {
         type: actions.SET_SEARCH_TEXT,
@@ -31,9 +38,21 @@ export function search() {
 
         return api.getItems(search.for, utils.getActiveTypes(search.in), utils.getActiveTypes(search.from))
         .then(function(res) {
-            return dispatch(gotItems(null, res));
-        }).catch(function(err) {
-            return dispatch(gotItems(err));
+            if (getState().gsi.queries.length < 1) {
+                //dispatch(setActiveQuery(res.body.query));
+                dispatch(setActiveQuery({'title' : 'test','count' : 1000, '_id' : 'an_id'}));
+            }
+
+            const obj = {
+                'items' : res.body,
+                'query' : {
+                    'title' : 'test',
+                    'count' : 1000,
+                    '_id' : 'an_id'
+                }
+            };
+
+            return dispatch(gotItems(null, {'body' : obj}));
         });
     }
 }

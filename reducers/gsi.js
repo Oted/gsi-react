@@ -5,41 +5,36 @@ import _ from 'lodash';
 
 
 export default function gsi(state = initial, action) {
-    console.log('here');
     switch (action.type) {
 
         case actions.SET_SEARCH_TEXT:
-            return {
-                ...state,
-                ...state['search'].for = action.text
-            }
+            return _.merge({}, state, {'search' : {'for' : action.text}});
 
         case actions.TOGGLE_SEARCH_TYPE:
-            return {
-                ...state,
-                ...state['search'][action.list].map(target => {
-                    if (action.item === target.type) {
-                        target.active = !target.active;
-                    }
+            var newObj = {'search' : {}};
+            newObj.search[action.list] = state['search'][action.list].map(target => {
+                if (action.item === target.type) {
+                    target.active = !target.active;
+                }
 
-                    return target;
-                })
-            }
+                return target;
+            });
 
-        case actions.SEARCH:
-            return {
-                ...state,
-                ...state['search'].isLoading = true
-            }
+            return _.merge({}, state, newObj);
+
+        case actions.SET_ACTIVE_QUERY:
+            return _.merge({}, state, {'queries' : [action.query, ...state['queries']]});
 
         case actions.GOT_ITEMS:
-            const key = 'test';
-            console.log(state);
-            const current = state.items[key] || [];
-            const newObj = {'items' : {}};
-            newObj['items'][key] = [...current, ...action.res.body];
+            var newObj = {'lists' : {}};
+            newObj['lists'][action.res.body.query._id] = {};
+            newObj['lists'][action.res.body.query._id]['query'] = action.res.body.query;
+            newObj['lists'][action.res.body.query._id]['items'] = [
+                ...state.lists[action.res.body.query._id] ? state.lists[action.res.body.query._id]['items'] : [],
+                ...action.res.body.items
+            ];
 
-            return _.assign(state, newObj);
+            return _.merge({}, state, newObj);
 
         default:
             return state;

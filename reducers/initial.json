@@ -1,5 +1,6 @@
 {
-    "items" : {},
+    "queries" : [],
+    "lists" : {},
     "search": {
         "isLoading": false,
         "for": "",
