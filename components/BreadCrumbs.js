@@ -11,10 +11,15 @@ export default class BreadCrumbs extends Component {
 
         return (
             <ul className="breadcrumb">
-                <li><p href="#">Home</p></li>
-                <li><p href="#">Vehicles</p></li>
-                <li><p href="#">Vans</p></li>
-                <li><p href="#">Camper Vans</p></li>
+                {queries.filter(q => {return q.results > 0}).map(q => {
+                    return (<li
+                            key={'bread-' + q._hash}
+                            onClick={::actions.setActiveQuery.bind(this, q)}>
+                        <span>
+                            {(q.search || 'everything') + ' (' + q.results + ')'}
+                        </span>
+                    </li>);
+                })}
             </ul>
         );
     }

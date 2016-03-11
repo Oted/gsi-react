@@ -41,19 +41,20 @@ export default class SearchBar extends Component {
 
         return (
             <div className='search-bar'>
-                <h5 className='search-text'> SEARCH </h5>
+                <h5 className='search-text'> search </h5>
                 <DropDown key={'in'} list={search['in']} {...actions} {...{name : 'in', placeholder : this.getInPlaceholder()}} />
-                <h5 className='search-text'> ABOUT </h5>
+                <h5 className='search-text'> about </h5>
                 <input
                     className='search-text search-input'
                     placeholder='SOMETHING'
+                    value={search.for || ''}
                     autoFocus='true'
                     onChange={::this.onChange}
                     onKeyDown={::this.search}/>
-                <h5 className='search-text'> FROM </h5>
-                <DropDown key={'from'} list={search['from']} {...actions} {...{name : 'from', placeholder : this.getFromPlaceholder()}} />
                 <div className="search-button">
-                    <i className="ion-ios-search-strong"></i>
+                    <div style={{'top' : '5px', 'position' : 'relative'}}>
+                        <i className="ion-ios-search-strong"></i>
+                    </div>
                 </div>
             </div>
         );

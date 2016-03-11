@@ -9,7 +9,7 @@ export default class DropDown extends Component {
             <div className="dropdown">
                 <div className="dropbtn search-text">
                     {this.props.placeholder}
-                <i className='ion-arrow-down-b arrow'></i>
+                <i style={{'padding-left' : '3px'}} className='ion-arrow-down-b arrow'></i>
                 </div>
                 <div className="dropdown-content">
                     {
