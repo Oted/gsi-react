@@ -1,0 +1,55 @@
+var path = require('path');
+var webpack = require('webpack');
+
+module.exports = {
+    devtool: 'eval',
+    entry: [
+        // 'webpack-dev-server/client?http://localhost:3030',
+        // 'webpack/hot/only-dev-server',
+        './index'
+    ],
+    output: {
+        path: path.join( __dirname,'static'),
+        filename: 'bundle.js',
+        publicPath: '/static/'
+    },
+    plugins: [
+        // new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    ],
+    resolve: {
+        extensions: ['', '.js']
+    },
+    resolveLoader: {
+        'fallback': path.join(__dirname, 'node_modules')
+    },
+    module: {
+        loaders: [{
+            test: /\.js$/,
+            loaders: ['react-hot', 'babel'],
+            exclude: /node_modules/,
+            include: __dirname
+        }, {
+            test: /\.js$/,
+            loaders: ['react-hot', 'babel'],
+            include: path.join(__dirname, './', './', 'src')
+        }, {
+            test: /\.css?$/,
+            loaders: ['style', 'raw'],
+            include: __dirname
+        },
+        {
+            test: /\.json$/,
+            loader: 'json'
+        }]
+    }
+};

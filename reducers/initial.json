@@ -1,0 +1,36 @@
+{
+    "fragments" : {},
+    "queries" : [],
+    "lists" : {},
+    "search": {
+        "isLoading": false,
+        "for": "",
+        "in": [
+            {
+                "type": "GIFS",
+                "active": true,
+                "query": ["gif", "video"]
+            },
+            {
+                "type": "IMAGES",
+                "active": true,
+                "query": ["img"]
+            },
+            {
+                "type": "VIDEOS",
+                "active": true,
+                "query": ["youtube", "vimeo"]
+            },
+            {
+                "type": "SOUNDCLOUD",
+                "active": true,
+                "query": ["soundcloud"]
+            },
+            {
+                "type": "TWITCH",
+                "active": true,
+                "query": ["twitch"]
+            }
+        ]
+    }
+}
