@@ -1,13 +1,12 @@
 import React, { PropTypes, Component } from 'react';
 import { PlayButton, Icons, Cover } from 'react-soundplayer/components';
 import { SoundPlayerContainer } from 'react-soundplayer/addons';
-import SoundCloudAudio from 'react-soundplayer/node_modules/soundcloud-audio';
+import SoundCloudAudio from 'soundcloud-audio';
 
 export default class Soundcloud extends Component {
     render() {
         const { item, settings, actions } = this.props;
 
-        console.log(item);
         return (<div>
             <SoundPlayerContainer resolveUrl={item.data} clientId='08f79801a998c381762ec5b15e4914d5'>
                 <CustomPlayer isCurrent={this.props.isCurrent} />

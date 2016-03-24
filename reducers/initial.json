@@ -1,4 +1,5 @@
 {
+    "fragments" : {},
     "queries" : [],
     "lists" : {},
     "search": {
@@ -21,36 +22,14 @@
                 "query": ["youtube", "vimeo"]
             },
             {
-                "type": "SOUNDCLOUDS",
+                "type": "SOUNDCLOUD",
                 "active": true,
                 "query": ["soundcloud"]
             },
             {
-                "type": "TWITCHES",
+                "type": "TWITCH",
                 "active": true,
                 "query": ["twitch"]
-            }
-        ],
-        "from": [
-            {
-                "type" : "9GAG.COM",
-                "active": true,
-                "query": ["9gag"]
-            },
-            {
-                "type" : "INSTAGRAM.COM",
-                "active":true,
-                "query": ["instagram"]
-            },
-            {
-                "type" : "REDDIT.COM",
-                "active":true,
-                "query": ["reddit"]
-            },
-            {
-                "type": "YOUTUBE.COM",
-                "active": true,
-                "query" : ["youtube"]
             }
         ]
     }

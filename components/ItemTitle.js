@@ -24,13 +24,11 @@ export default class ItemTitle extends Component {
             const strip = word.toLowerCase().replace(/[^a-zA-Z\d\s:]/g, '').trim();
             if (fragments.indexOf(strip) > -1) {
                 return (<span
-                        key={item._hash + '-fragment-' + word}
                         className='title-fragment'
                         onClick={::that.onClick.bind(that, strip)}> {word} </span>)
             }
 
-            return (<span
-                    key={item._hash + '-fragment-' + word}> {word} </span>);
+            return (<span> {word} </span>);
         })} </h5>)
     }
 }

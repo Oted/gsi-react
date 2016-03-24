@@ -11,12 +11,12 @@ export default class BreadCrumbs extends Component {
 
         return (
             <ul className="breadcrumb">
-                {queries.filter(q => {return q.results > 0}).map(q => {
+                {queries.filter(q => {return q.results > 0}).reverse().map(q => {
                     return (<li
                             key={'bread-' + q._hash}
                             onClick={::actions.setActiveQuery.bind(this, q)}>
                         <span>
-                            {(q.search || 'everything') + ' (' + q.results + ')'}
+                            {(q.title || 'everything') + ' (' + q.results + ')'}
                         </span>
                     </li>);
                 })}

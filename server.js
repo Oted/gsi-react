@@ -1,6 +1,8 @@
 var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
+
+var WebpackDevServer = require('webpack-dev-server');
+process.env.NODE_ENV = 'production';
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
@@ -9,10 +11,10 @@ new WebpackDevServer(webpack(config), {
     stats: {
         colors: true
     }
-}).listen(3000, 'localhost', function (err) {
+}).listen(3030, 'localhost', function (err) {
     if (err) {
         console.log(err);
     }
 
-    console.log('Listening at localhost:3000');
+    console.log('Listening at localhost:3030');
 });

@@ -10,6 +10,7 @@ import Video from '../components/types/Video';
 import Vimeo from '../components/types/Vimeo';
 
 import ItemTitle from '../components/ItemTitle';
+import ItemFooter from '../components/ItemFooter';
 
 export default class ScrollStage extends Component {
     constructor(props) {
@@ -66,7 +67,9 @@ export default class ScrollStage extends Component {
                     <ItemTitle actions={that.props.actions} item={item} />
                 </div>
                 {that.getTargetComponent(item, isCurrent)}
-                <div className='item-footer'></div>
+                <div className='item-footer'>
+                    <ItemFooter actions={that.props.actions} item={item} />
+                </div>
             </div>)
         });
     }
@@ -81,7 +84,7 @@ export default class ScrollStage extends Component {
     }
 
     getHeight(item) {
-        return (item.height || this.state.typeSettings[item.type].height);
+        return (item.dimensions && item.dimensions.height ? item.dimensions.height : this.state.typeSettings[item.type].height);
     }
 
     handleScroll(node) {
@@ -118,8 +121,6 @@ export default class ScrollStage extends Component {
         const list = this.props.lists[this.props.query._hash];
         const { actions } = this.props;
 
-        const renderedItems = this.buildElements(list.items);
-
         return (<div id='scroll-container'>
             <Infinite
                 handleScroll={::this.handleScroll}
@@ -128,10 +129,10 @@ export default class ScrollStage extends Component {
                 infiniteLoadBeginEdgeOffset={2000}
                 onInfiniteLoad={::this.handleInfiniteLoad}
                 preloadBatchSize={Infinite.containerHeightScaleFactor(3)}>
-                    {renderedItems}
+                    {this.buildElements(list.items)}
             </Infinite>
             <div
-                style={{'opacity' : list.currentIndex >= 2 ? (list.currentIndex - 2) / 4 : 0}}
+                style={{'opacity' : list.currentIndex >= 1 ? (list.currentIndex - 2) / 4 : 0}}
                 className='scroll-back'
                 onClick={::this.scrollToTop}>
                 <i className="ion-chevron-up"></i>
@@ -140,7 +141,9 @@ export default class ScrollStage extends Component {
     }
 
     handleInfiniteLoad() {
-        this.props.actions.getItems();
+        if (!this.props.isLoading) {
+            this.props.actions.fetch();
+        }
     }
 
     scrollToTop() {
