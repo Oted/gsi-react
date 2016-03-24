@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var config = require('./webpack.config');
 
 var WebpackDevServer = require('webpack-dev-server');
-process.env.NODE_ENV = 'production';
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,

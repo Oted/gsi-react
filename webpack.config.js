@@ -4,27 +4,27 @@ var webpack = require('webpack');
 module.exports = {
     devtool: 'eval',
     entry: [
-        'webpack-dev-server/client?http://localhost:3030',
-        'webpack/hot/only-dev-server',
+        // 'webpack-dev-server/client?http://localhost:3030',
+        // 'webpack/hot/only-dev-server',
         './index'
     ],
     output: {
-        path: path.join(__dirname,'static'),
+        path: __dirname + '/public',
         filename: 'bundle.js',
-        publicPath: '/static/'
+        publicPath: '../'
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        // new webpack.DefinePlugin({
-            // 'process.env': {
-                // 'NODE_ENV': JSON.stringify('production')
-            // }
-        // }),
-        // new webpack.optimize.UglifyJsPlugin({
-            // compress: {
-                // warnings: false
-            // }
-        // })
+        // new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ],
     resolve: {
         extensions: ['', '.js']
