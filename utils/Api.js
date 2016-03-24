@@ -1,5 +1,5 @@
-// const prefix = '';
-const prefix = 'http://localhost:3000';
+const prefix = '';
+//const prefix = 'http://localhost';
 
 import request from 'superagent';
 import * as Actions from '../actions/Actions';
