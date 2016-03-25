@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "gsi frotend",
   "scripts": {
-    "start": "node server.js"
+    "start": "webpack --progress --colors --watch & http-server ./"
   },
   "author": "Oted",
   "dependencies": {
@@ -18,7 +18,8 @@
     "redux": "^3.1.1",
     "redux-thunk": "^1.0.3",
     "superagent": "^1.7.2",
-    "superagent-promise-plugin": "^2.1.0"
+    "superagent-promise-plugin": "^2.1.0",
+    "webpack": "^1.12.14"
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
@@ -31,11 +32,6 @@
     "node-libs-browser": "^0.5.2",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^1.3.0",
-    "redux-devtools": "^3.0.1",
-    "redux-devtools-dock-monitor": "^1.0.1",
-    "redux-devtools-log-monitor": "^1.0.2",
-    "style-loader": "^0.12.3",
-    "webpack": "^1.9.11",
-    "webpack-dev-server": "^1.9.0"
+    "style-loader": "^0.12.3"
   }
 }
