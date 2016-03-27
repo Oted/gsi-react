@@ -17,8 +17,8 @@ export default class Twitch extends Component {
 
         return (<iframe
             id={'twith-' + item._hash}
-            height={settings.height}
-            width={settings.width}
+            height={settings ? settings.height : '720'}
+            width={settings ? settings.width : '1280'}
             frameBorder="0"
             scrolling="no"
             autostart='0'

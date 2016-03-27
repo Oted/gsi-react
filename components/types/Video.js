@@ -18,8 +18,8 @@ export default class Image extends Component {
             controls
             loop
             type='video/mp4'
-            height={item.dimensions && item.dimensions.height ? item.dimensions.height : settings.height}
-            width={settings.width}
+            height={item.dimensions && item.dimensions.height ? item.dimensions.height : settings ? settings.height : ''}
+            width={settings ? settings.width : ''}
             src={item.data}>
         </video>);
     };

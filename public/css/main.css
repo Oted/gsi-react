@@ -34,7 +34,7 @@ body {
 }
 
 .content-container {
-    margin-top:8rem;
+    margin-top:7rem;
 }
 
 /**
@@ -62,6 +62,11 @@ body {
     cursor: pointer;
 }
 
+.title-added-at {
+    float:right;
+    font-size: 1rem;
+}
+
 .search-button {
     cursor: pointer;
     display: inline-table;
@@ -84,10 +89,12 @@ body {
     padding: 5px 16px 5px 16px;
     color: #292f33;
     background-color: #f5f8fa;
-    border:
-    1px solid #e1e8ed;
+    border: 1px solid #e1e8ed;
     border-radius: 5px;
-    transition: all .2s ease-in-out;
+    transition: all .1s ease-in-out;
+}
+
+.search-input:focus {
 }
 
 .search-text {
@@ -145,7 +152,7 @@ body {
     border-radius:1rem;
     padding-right: 1rem;
     padding-top: 1rem;
-    padding-left: 2rem;
+    padding-left: 1rem;
     margin-bottom: 1rem;
     -webkit-box-pack: center;
     -moz-box-pack: center;
@@ -167,12 +174,13 @@ body {
     display: flex;
     text-align: center;
     margin-bottom: 1rem;
+    margin-left: 1rem;
     width: 100%;
 }
 
 .list-fragment {
     color:#4099FF;
-    padding-left:0.5rem;
+    padding-left:1.5rem;
     cursor: pointer;
 }
 
@@ -186,6 +194,7 @@ body {
 }
 
 .breadcrumb li {
+    position: relative;
     float: left;
 }
 
@@ -194,8 +203,8 @@ body {
     background: rgba(106, 189, 69, 0.6);
     text-decoration: none;
     position: relative;
-    height: 40px;
-    line-height: 40px;
+    height: 3rem;
+    line-height: 3rem;
     padding: 0 10px 0 5px;
     cursor: pointer;
     text-align: center;
@@ -242,7 +251,7 @@ body {
     position: absolute;
     top: 0;
     border: 0 solid rgba(106, 189, 69, 0.6);
-    border-width: 20px 10px;
+    border-width: 1.5rem 10px;
     width: 0;
     height: 0;
 }
@@ -337,6 +346,7 @@ body {
  *  Scroll stage
  */
 .scroll-stage {
+    transition: 2s ease-in-out;
     -webkit-box-pack: center;
     -moz-box-pack: center;
     -ms-flex-pack: center;
@@ -361,6 +371,7 @@ body {
 }
 
 .item {
+    transition : 1s;
     padding-top: 1rem;
     padding-right: 3rem;
     padding-left: 3rem;
@@ -376,9 +387,12 @@ body {
     width: 100%;
 }
 
-.footer-fragment {
-    color:#4099FF;
-    cursor: pointer;
+.facebook-colour {
+    color:#3b5998;
+}
+
+.twitter-colour {
+    color:#1dcaff;
 }
 
 .current {
@@ -413,16 +427,61 @@ body {
     width:100%;
     overflow:hidden;
     height:40px;
+    font-size:2rem;
     position:relative;
-    padding-top:1rem;
+    padding-top:2rem;
 }
 
 .footer-fragments-container {
+    display: inline-flex;
+    font-size:1.5rem;
     float: left;
-    display:inline-flex;
+}
+
+.footer-fragment {
+    color:#4099FF;
+    cursor: pointer;
+}
+
+.footer-sharing {
+    display: inline-flex;
+    float: right;
+}
+
+.footer-middle {
+    float: right;
+    right: 42%;
+    position: absolute;
+    display: inline-flex;
+}
+
+.footer-middle  > div {
+    cursor:pointer;
+    padding-left:2rem;
+    margin-right:2rem;
+}
+
+.footer-middle > div:hover {
+    color:#4099FF;
+    transition-duration: 0.25s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.footer-sharing > div {
+    cursor:pointer;
+    padding-left:2rem;
+    margin-right:2rem;
+}
+
+.footer-sharing > div:hover {
+    transition-duration: 0.25s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .scroll-container > * {
+    transition: 2s;
     max-width : 100%;
     display:block;
     margin-left: auto;
@@ -479,4 +538,23 @@ body {
     height: 10rem;
     overflow: hidden;
     cursor: pointer;
+}
+
+/**
+ *  Single view overlay
+ */
+.single-view {
+    padding:1rem;
+    text-align:center;
+    background-color:white;
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    border: 1px solid #E1E8ED;
+}
+
+.single-view * {
+    max-width : 100%;
 }

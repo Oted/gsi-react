@@ -23,10 +23,17 @@ export default class Youtube extends Component {
 
         return (
             <ReactYoutube
-                style={{height: item.height || settings.options.height}}
                 id={'youtube-' + item._hash}
                 videoId={item.data}
-                opts={settings.options}
+                opts={settings ? settings.options : {
+                        'height' : '640',
+                        'width' : '1280',
+                        playerVars: {
+                            autoplay: 1,
+                            iv_load_policy : 3
+                        }
+                    }
+                }
                 onReady={this.onReady.bind(this)}
             />
         );

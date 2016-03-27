@@ -26,12 +26,12 @@ export default class Vimeo extends Component {
 
         return (<iframe
             id={'vimeo-' + item._hash}
-            height={settings.height}
-            width={settings.width}
+            height={settings ? settings.height : '390'}
+            width={settings ? settings.width : '640'}
             frameBorder="0"
             scrolling="no"
-            autostart='0'
-            autoplay='false'
+            autostart={isCurrent ? '0' : '1'}
+            autoplay={isCurrent ? 'false' : 'true'}
             src={'http://player.vimeo.com/video/' + item.data.split('/').pop() + '?autoplay=' + 1 + '&api=1&player_id=' + 'vimeoplayer'}>
         </iframe>)
     };

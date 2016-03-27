@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "gsi frotend",
   "scripts": {
-    "start": "webpack --progress --colors --watch & http-server ./"
+    "start": "webpack --progress --colors --watch & http-server ./ & open http://localhost:8080/public/index.html",
+    "build": "webpack -p"
   },
   "author": "Oted",
   "dependencies": {
@@ -12,6 +13,7 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-infinite": "^0.8.0",
+    "react-motion": "^0.4.2",
     "react-redux": "^4.1.0",
     "react-soundplayer": "^0.3.2",
     "react-youtube": "^5.1.0",

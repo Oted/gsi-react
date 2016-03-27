@@ -4,6 +4,10 @@ import initial from './initial.json';
 import _ from 'lodash';
 
 export default function gsi(state = initial, action) {
+    if (process.env.NODE_ENV !== 'production') {
+        console.log('another action with state', action, state);
+    }
+
     switch (action.type) {
 
         case actions.SCROLL_TO_POSITION:
@@ -55,6 +59,14 @@ export default function gsi(state = initial, action) {
             }
 
             return _.merge({}, state, {'queries' : [action.query, ...state['queries']]});
+
+        case actions.GOT_ITEM:
+            var newObj = {'single_view' : action.res.body};
+            return _.merge({}, state, newObj);
+
+        case actions.UNVIEW_ITEM:
+            var newObj = {'single_view' : null};
+            return _.merge({}, state, newObj);
 
         case actions.GOT_ITEMS:
             var newObj = {'lists' : {}, 'search' : {'isLoading' : false}};

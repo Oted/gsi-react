@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import ScrollStage from '../components/ScrollStage';
 import BreadCrumbs from '../components/BreadCrumbs';
 import InfoBox from '../components/InfoBox';
+import SingleView from '../components/SingleView.js';
 import Lists from '../components/Lists';
 
 class GSIApp extends Component {
@@ -20,16 +21,25 @@ class GSIApp extends Component {
         return (
             <div className="container row">
                 <SearchBar search={gsi.search} actions={actions} />
-                <div className='content-container'>
-                    <div className='three columns'>
-                        <InfoBox isLoading={gsi.search.isLoading} actions={actions} queries={gsi.queries}/>
-                        <Lists actions={actions} fragments={gsi.fragments}/>
-                    </div>
-                    <div className='eight columns'>
+                { gsi.single_view ?
+                    <div className='content-container'>
                         { gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
-                        { gsi.queries.length ? <ScrollStage isLoading={gsi.search.isLoading} lists={gsi.lists} actions={actions} query={gsi.queries[0]} /> : null}
+                        <div className='twelve columns'>
+                            <SingleView item={gsi.single_view} actions={actions}/>
+                        </div>
                     </div>
-                </div>
+                :
+                    <div className='content-container'>
+                        <div className='three columns'>
+                            <InfoBox isLoading={gsi.search.isLoading} actions={actions} queries={gsi.queries}/>
+                            <Lists actions={actions} fragments={gsi.fragments}/>
+                        </div>
+                        <div className='eight columns'>
+                            { gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
+                            { gsi.queries.length ? <ScrollStage isLoading={gsi.search.isLoading} lists={gsi.lists} actions={actions} query={gsi.queries[0]} /> : null}
+                        </div>
+                    </div>
+                }
             </div>
         );
     }
@@ -44,7 +54,7 @@ function mapState(state) {
 function mapDispatch(dispatch) {
     return {
         actions: bindActionCreators(Actions, dispatch)
-  };
+    };
 }
 
 

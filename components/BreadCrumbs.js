@@ -1,24 +1,30 @@
 import React, { PropTypes, Component } from 'react';
+import { Motion, spring } from 'react-motion';
 import DropDown from '../components/DropDown'
 
 export default class BreadCrumbs extends Component {
     onClick(e) {
+        this.props.actions.unviewItem();
         this.props.actions.setActiveQuery(e);
     }
 
     render() {
+        var that = this;
+
         const { queries, actions } = this.props;
 
         return (
             <ul className="breadcrumb">
                 {queries.filter(q => {return q.results > 0}).reverse().map(q => {
-                    return (<li
-                            key={'bread-' + q._hash}
-                            onClick={::actions.setActiveQuery.bind(this, q)}>
-                        <span>
-                            {(q.title || 'everything') + ' (' + q.results + ')'}
-                        </span>
-                    </li>);
+                    return (<Motion defaultStyle={{x: 0}} style={{x: spring(1)}}>
+                        {value =>
+                            <li style={{opacity : value.x}} key={'bread-' + q._hash} onClick={this.onClick.bind(that, q)}>
+                                <span>
+                                    {(q.title || 'everything') + ' (' + q.results + ')'}
+                                </span>
+                            </li>
+                        }
+                    </Motion>);
                 })}
             </ul>
         );

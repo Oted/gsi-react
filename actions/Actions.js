@@ -58,6 +58,20 @@ export function getItems(queryId) {
     };
 }
 
+export function unviewItem() {
+    return {
+        type: actions.UNVIEW_ITEM
+    }
+}
+
+export function gotItem(err, res) {
+    return {
+        type: actions.GOT_ITEM,
+        res,
+        err
+    }
+}
+
 export function loadingItems(isLoading) {
     return {
         type : actions.LOADING_ITEMS,
@@ -80,24 +94,35 @@ export function setCurrentIndex(index, queryId) {
     };
 }
 
-export function fetch() {
-    return (dispatch, getState) => {
-        const { search } = getState().gsi;
-        dispatch(loadingItems(true));
+export function viewItem(hash, item = null) {
+    return (dispatch) => {
+        if (item) {
+            return dispatch(gotItem(null, item));
+        }
 
-        return api.fetchItems(
-                search.for,
-                utils.getActiveTypes(search.in),
-                getState().gsi.lists[getState().gsi.queries[0]._hash].items)
-        .then(function(res) {
-            return dispatch(gotItems(null, res));
+        return api.getItem(hash).then(function(res) {
+            return dispatch(gotItem(null, res));
         });
     }
 }
 
 export function init() {
     return (dispatch, getState) => {
-        dispatch(search());
+
+        if (document.getElementById('list_hash')) {
+            api.getItemsWithQuery(
+                document.getElementById('list_hash').getAttribute('content')
+            ).then(function(res) {
+                dispatch(setActiveQuery(res.body.query));
+                return dispatch(gotItems(null, res));
+            });
+        } else {
+            dispatch(search());
+        }
+
+        if (document.getElementById('item_hash')) {
+            dispatch(viewItem(document.querySelector('#item_hash').getAttribute('content')));
+        }
 
         return api.getFragments().then(function(allRes) {
             let fragments = {
@@ -111,10 +136,31 @@ export function init() {
     }
 }
 
+export function fetch() {
+    return (dispatch, getState) => {
+        const { search, queries } = getState().gsi;
+
+        if (search.isLoading) {
+            console.log('Already loading');
+            return ;
+        }
+
+        dispatch(loadingItems(true));
+
+        return api.fetchItems(
+                queries[0]._hash,
+                getState().gsi.lists[getState().gsi.queries[0]._hash].items)
+        .then(function(res) {
+            return dispatch(gotItems(null, res));
+        });
+    }
+}
+
 export function search() {
     return (dispatch, getState) => {
         const { search } = getState().gsi;
         dispatch(scrollToPosition(0));
+        dispatch(unviewItem());
         dispatch(loadingItems(true));
 
         return api.getItems(

@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Infinite from 'react-infinite';
+import { Motion, spring, presets } from 'react-motion';
 import { getPosition } from '../utils/Utils';
 
 import Image from '../components/types/Image';
@@ -21,7 +22,7 @@ export default class ScrollStage extends Component {
             heights:[],
             typeSettings : {
                 'img' : {
-                    'height' : 400
+                    'height' : 500
                 },
                 'gif' : {
                     'height' : 300
@@ -61,15 +62,12 @@ export default class ScrollStage extends Component {
         return list.map(function(item, index) {
             const isCurrent = index === that.props.lists[that.props.query._hash].currentIndex;
             return (<div key={that.props.query._hash + '-' + item._hash}
-                    className={isCurrent ? 'item current' : 'item'}
-                    style={{height: that.getHeight.call(that, item) + that.state.additionalItemHeigth}}>
-                <div className='item-header'>
-                    <ItemTitle actions={that.props.actions} item={item} />
-                </div>
+                         className={isCurrent ? 'item current' : 'item'}
+                         style={{height: that.getHeight.call(that, item) + that.state.additionalItemHeigth}}>
+
+                <ItemTitle actions={that.props.actions} item={item} />
                 {that.getTargetComponent(item, isCurrent)}
-                <div className='item-footer'>
-                    <ItemFooter actions={that.props.actions} item={item} />
-                </div>
+                <ItemFooter actions={that.props.actions} item={item} />
             </div>)
         });
     }
@@ -121,23 +119,27 @@ export default class ScrollStage extends Component {
         const list = this.props.lists[this.props.query._hash];
         const { actions } = this.props;
 
-        return (<div id='scroll-container'>
-            <Infinite
-                handleScroll={::this.handleScroll}
-                useWindowAsScrollContainer
-                elementHeight={this.getHeights(list.items)}
-                infiniteLoadBeginEdgeOffset={2000}
-                onInfiniteLoad={::this.handleInfiniteLoad}
-                preloadBatchSize={Infinite.containerHeightScaleFactor(3)}>
-                    {this.buildElements(list.items)}
-            </Infinite>
-            <div
-                style={{'opacity' : list.currentIndex >= 1 ? (list.currentIndex - 2) / 4 : 0}}
-                className='scroll-back'
-                onClick={::this.scrollToTop}>
-                <i className="ion-chevron-up"></i>
-            </div>
-        </div>);
+        return (<Motion defaultStyle={{x: 0}} style={{x: spring(1)}}>
+            {value =>
+                <div style={{opacity : value.x}} id='scroll-container'>
+                    <Infinite
+                        handleScroll={::this.handleScroll}
+                        useWindowAsScrollContainer
+                        elementHeight={this.getHeights(list.items)}
+                        infiniteLoadBeginEdgeOffset={2000}
+                        onInfiniteLoad={::this.handleInfiniteLoad}
+                        preloadBatchSize={Infinite.containerHeightScaleFactor(3)}>
+                            {this.buildElements(list.items)}
+                    </Infinite>
+                    <div
+                        style={{'opacity' : list.currentIndex >= 1 ? (list.currentIndex - 2) / 4 : 0}}
+                        className='scroll-back'
+                        onClick={::this.scrollToTop}>
+                        <i className="ion-chevron-up"></i>
+                    </div>
+                </div>
+            }
+        </Motion>);
     }
 
     handleInfiniteLoad() {
