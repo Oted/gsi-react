@@ -1,7 +1,6 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 import { PlayButton, Icons, Cover } from 'react-soundplayer/components';
 import { SoundPlayerContainer } from 'react-soundplayer/addons';
-import SoundCloudAudio from 'soundcloud-audio';
 
 export default class Soundcloud extends Component {
     render() {
@@ -16,6 +15,18 @@ export default class Soundcloud extends Component {
 };
 
 class CustomPlayer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            'pressed' : false
+        }
+    }
+
+    handleToggle() {
+        this.state.pressed = true;
+    }
+
     render() {
         let { track, currentTime, duration, soundCloudAudio, isCurrent } = this.props;
 
@@ -23,16 +34,20 @@ class CustomPlayer extends React.Component {
             return <div>Loading...</div>;
         }
 
-        if (isCurrent) {
-            soundCloudAudio.play();
-        } else {
-            soundCloudAudio.pause();
+        if (!this.state.pressed) {
+            if (isCurrent && !soundCloudAudio.playing) {
+                soundCloudAudio.play();
+            }
+
+            if (!isCurrent && soundCloudAudio.playing) {
+                soundCloudAudio.pause();
+            }
         }
 
         return (
             <div>
                 <div className='soundcloud-container'>
-                    <PlayButton className='soundcloud-play' {...this.props} />
+                    <PlayButton className='soundcloud-play' {...this.props} onTogglePlay={this.handleToggle.bind(this)}/>
                     <Progress className='soundcloud-progress' value={currentTime / duration * 100 || 0} {...this.props} />
                 </div>
                 {currentTime ? <p> {Math.floor(currentTime / 60)} : {Math.floor(currentTime % 60)} / {Math.floor(duration / 60)} : {Math.floor(duration % 60)} </p> : null}
@@ -45,7 +60,6 @@ class Progress extends Component {
     handleSeekTrack(e) {
         let { onSeekTrack, soundCloudAudio } = this.props;
         const xPos = (e.pageX - e.currentTarget.getBoundingClientRect().left) / e.currentTarget.offsetWidth;
-
 
         if (soundCloudAudio && !isNaN(soundCloudAudio.audio.duration)) {
             soundCloudAudio.audio.currentTime = (xPos * soundCloudAudio.audio.duration);

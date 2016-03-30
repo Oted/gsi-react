@@ -22,8 +22,7 @@ export default class Twitch extends Component {
             frameBorder="0"
             scrolling="no"
             autostart='0'
-            autoplay='false'
-            src={item.data}>
-        </iframe>)
+            src={'http://player.twitch.tv/?autoplay=false&channel=' + item.data.split('/').slice(-2,-1).join('')}>
+        </iframe>);
     };
 }
