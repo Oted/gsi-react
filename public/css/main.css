@@ -90,7 +90,7 @@ body {
     color: #292f33;
     background-color: #f5f8fa;
     border: 1px solid #e1e8ed;
-    border-radius: 5px;
+    border-radius: 3px;
     transition: all .1s ease-in-out;
 }
 
@@ -149,7 +149,7 @@ body {
  *  Lists
  */
 .list {
-    border-radius:1rem;
+    border-radius:3px;
     padding-right: 1rem;
     padding-top: 1rem;
     padding-left: 1rem;
@@ -226,9 +226,9 @@ body {
 
 .breadcrumb li:first-child span {
     padding-left: 15px;
-    -moz-border-radius: 4px 0 0 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px 0 0 4px;
+    -moz-border-radius: 3px 0 0 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px 0 0 3px;
 }
 
 .breadcrumb li:first-child span:before {
@@ -237,9 +237,9 @@ body {
 
 .breadcrumb li:last-child span {
     padding-right: 15px;
-    -moz-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 3px 3px 0;
     -webkit-border-radius: 0;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 3px 3px 0;
 }
 
 .breadcrumb li:last-child span:after {
@@ -297,7 +297,7 @@ body {
  *  Info box
  */
 .info-box {
-    border-radius:1rem;
+    border-radius: 3px;
     padding-top: 14rem;
     padding-right: 1rem;
     padding-left: 1rem;
@@ -346,13 +346,7 @@ body {
  *  Scroll stage
  */
 .scroll-stage {
-    transition: 2s ease-in-out;
-    -webkit-box-pack: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    display:flex;
+    transition:0.25s;
 }
 
 .scroll-back {
@@ -557,4 +551,79 @@ body {
 
 .single-view * {
     max-width : 100%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 15;
+    background-color: rgba(255,255,255,0.8);
+}
+
+#suggestion-modal {
+    padding:1rem;
+    overflow-y: scroll;
+    border: 1px solid #E1E8ED;
+    text-align: center;
+    background-color: white;
+    border-radius: 3px;
+    position:relative;
+    overflow:auto;
+    text-align:center;
+    z-index:20;
+    max-height: 88%;
+    overflow-y: scroll;
+    margin-left:auto;
+    margin-right:auto;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2);
+}
+
+.suggestion {
+    width:25%;
+    display:inline-table;
+    padding-top: 1rem;
+    min-width: 13rem;
+    background-color: #f5f8fa;
+    text-align:center;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #E1E8ED;
+    text-align: center;
+    margin:1rem;
+    padding-left:1rem;
+    padding-right:1rem;
+}
+
+.suggestion > div {
+    font-size:4rem;
+}
+
+.toggle-side {
+    cursor: pointer;
+    font-size: 4rem;
+    padding: 0rem;
+    left: 3rem;
+    width: 4rem;
+    position: fixed;
+}
+
+.toggle-side:hover {
+    transition-duration: 0.25s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+/**
+ *  Misc
+ */
+.far-left {
+    left:-500px !important;
+    position:absolute;
+}
+
+.side-bar {
+    left:0px;
 }

@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
 export default class Lists extends Component {
-    onClick(word) {
+    onWordClick(word) {
         var that = this;
 
         this.props.actions.setSearchText(word);
@@ -10,13 +10,39 @@ export default class Lists extends Component {
         }, 100);
     }
 
+    suggestClick(suggestion) {
+        var that = this;
+
+        suggestion.hash ?
+            this.props.actions.getQueryWithHash(suggestion.hash) :
+            this.props.actions.search(suggestion.search);
+    }
+
     render() {
-        const { fragments, actions } = this.props;
+        const { fragments, actions, suggestions } = this.props;
 
         return (<div>
+            {this.generateSuggestions(suggestions)}
             {fragments.trending ? this.generateList('trending') : null}
             {fragments.popular ? this.generateList('popular') : null}
             {fragments.fresh ? this.generateList('fresh') : null}
+        </div>);
+    }
+
+    generateSuggestions(suggestions) {
+        let that = this;
+
+        return (<div className='list'>
+            <span className='list-title'> SUGGESTIONS </span>
+            <ul>
+                {suggestions.map(suggestion => {
+                    return (<li
+                            onClick={this.suggestClick.bind(that, suggestion)}
+                            key={'suggestions-' + suggestion.name}
+                            className='list-fragment'> {suggestion.name}
+                    </li>);
+                })}
+            </ul>
         </div>);
     }
 
@@ -28,7 +54,7 @@ export default class Lists extends Component {
             <ul>
                 {this.props.fragments[list].map(fragment => {
                     return (<li
-                            onClick={this.onClick.bind(that, fragment.string)}
+                            onClick={this.onWordClick.bind(that, fragment.string)}
                             key={list + '-' + fragment.string}
                             className='list-fragment'> {fragment.string}
                     </li>);

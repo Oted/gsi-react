@@ -2,15 +2,23 @@ import * as actions from '../constants/ActionTypes';
 import * as api from '../utils/Api';
 import * as utils from '../utils/Utils';
 
-window.onload = function() {
-
-};
-
 export function toggleSearchType(list, item) {
     return {
         type: actions.TOGGLE_SEARCH_TYPE,
         list: list,
         item: item
+    };
+}
+
+export function toggleSideBar() {
+    return {
+        type: actions.TOGGLE_SIDE_BAR
+    };
+}
+
+export function toggleSuggestView() {
+    return {
+        type: actions.TOGGLE_SUGGEST_VIEW
     };
 }
 
@@ -110,12 +118,7 @@ export function init() {
     return (dispatch, getState) => {
 
         if (document.getElementById('list_hash')) {
-            api.getItemsWithQuery(
-                document.getElementById('list_hash').getAttribute('content')
-            ).then(function(res) {
-                dispatch(setActiveQuery(res.body.query));
-                return dispatch(gotItems(null, res));
-            });
+            getQueryWithHash(document.getElementById('list_hash').getAttribute('content'));
         } else {
             dispatch(search());
         }
@@ -156,7 +159,16 @@ export function fetch() {
     }
 }
 
-export function search() {
+export function getQueryWithHash(hash) {
+    return (dispatch, getState) => {
+        return api.getItemsWithQuery(hash).then(function(res) {
+            dispatch(setActiveQuery(res.body.query));
+            return dispatch(gotItems(null, res));
+        });
+    }
+}
+
+export function search(term) {
     return (dispatch, getState) => {
         const { search } = getState().gsi;
         dispatch(scrollToPosition(0));
@@ -164,7 +176,7 @@ export function search() {
         dispatch(loadingItems(true));
 
         return api.getItems(
-                search.for,
+                term ? term : search.for,
                 utils.getActiveTypes(search.in))
         .then(function(res) {
             dispatch(setActiveQuery(res.body.query));

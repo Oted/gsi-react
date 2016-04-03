@@ -37,10 +37,13 @@ export default class SearchBar extends Component {
     }
 
     render() {
-        const { search, actions } = this.props;
+        const { search, actions, side_bar } = this.props;
 
         return (
             <div className='search-bar'>
+                <div className={side_bar ? 'toggle-side green' : 'toggle-side'} onClick={actions.toggleSideBar.bind(this)}>
+                    <i className='ion-navicon-round'></i>
+                </div>
                 <h5 className='search-text'> search </h5>
                 <DropDown key={'in'} list={search['in']} {...actions} {...{name : 'in', placeholder : this.getInPlaceholder()}} />
                 <h5 className='search-text'> about </h5>

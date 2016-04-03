@@ -13,20 +13,25 @@ export default class BreadCrumbs extends Component {
 
         const { queries, actions } = this.props;
 
+        // <div className='erase=breadcrumbs'>
+            // <i className='ion-trash-a'></i>
+        // </div>
         return (
-            <ul className="breadcrumb">
-                {queries.filter(q => {return q.results > 0}).reverse().map(q => {
-                    return (<Motion defaultStyle={{x: 0}} style={{x: spring(1)}}>
-                        {value =>
-                            <li style={{opacity : value.x}} key={'bread-' + q._hash} onClick={this.onClick.bind(that, q)}>
-                                <span>
-                                    {(q.title || 'everything') + ' (' + q.results + ')'}
-                                </span>
-                            </li>
-                        }
-                    </Motion>);
-                })}
-            </ul>
+            <div>
+                <ul className="breadcrumb">
+                    {queries.filter(q => {return q.results > 0}).reverse().map(q => {
+                        return (<Motion defaultStyle={{x: 0}} style={{x: spring(1)}}>
+                            {value =>
+                                <li style={{opacity : value.x}} key={'bread-' + q._hash} onClick={this.onClick.bind(that, q)}>
+                                    <span>
+                                        {(q.title || 'everything') + ' (' + q.results + ')'}
+                                    </span>
+                                </li>
+                            }
+                        </Motion>);
+                    })}
+                </ul>
+            </div>
         );
     }
 }

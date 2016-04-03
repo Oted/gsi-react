@@ -1,9 +1,19 @@
 import * as actions from '../constants/ActionTypes';
 import * as utils from '../utils/Utils';
-import initial from './initial.json';
+import * as storage from '../utils/Storage';
 import _ from 'lodash';
+import defaultState from './initial.json';
 
-export default function gsi(state = initial, action) {
+let isMobile = utils.checkIfNotDesktop();
+
+if (isMobile) {
+    defaultState.is_mobile = true;
+    defaultState.side_bar = false;
+}
+
+let initState = _.merge({}, defaultState, storage.loadState());
+
+export default function gsi(state = initState, action) {
     if (process.env.NODE_ENV !== 'production') {
         console.log('another action with state', action, state);
     }
@@ -31,6 +41,12 @@ export default function gsi(state = initial, action) {
 
         case actions.SET_SEARCH_TEXT:
             return _.merge({}, state, {'search' : {'for' : action.text}});
+
+        case actions.TOGGLE_SUGGEST_VIEW:
+            return _.merge({}, state, {'suggest_view' : !state.suggest_view});
+
+        case actions.TOGGLE_SIDE_BAR:
+            return _.merge({}, state, {'side_bar' : !state.side_bar});
 
         case actions.TOGGLE_SEARCH_TYPE:
             var newObj = {'search' : {}};
@@ -79,7 +95,11 @@ export default function gsi(state = initial, action) {
 
             newObj.lists[action.res.body.query._hash].items = utils.filterDuplicates(newObj.lists[action.res.body.query._hash].items);
 
-            return _.merge({}, state, newObj);
+            let tempState = _.merge({}, state, newObj);
+
+            //save the state
+            storage.saveState(tempState);
+            return tempState;
 
         case actions.GOT_FRAGMENTS:
             let newObj = {

@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import Infinite from 'react-infinite';
-import { Motion, spring, presets } from 'react-motion';
+import { Motion, spring } from 'react-motion';
 import { getPosition } from '../utils/Utils';
 
 import Image from '../components/types/Image';
@@ -22,10 +22,10 @@ export default class ScrollStage extends Component {
             heights:[],
             typeSettings : {
                 'img' : {
-                    'height' : 500
+                    'height' : props.side_bar ? 500 : 700
                 },
                 'gif' : {
-                    'height' : 300
+                    'height' : props.side_bar ? 300 : 500
                 },
                 // https://developers.google.com/youtube/player_parameters
                 'youtube' : {
@@ -47,7 +47,7 @@ export default class ScrollStage extends Component {
                     'width' : 640
                 },
                 'video' : {
-                    'height' : 390
+                    'height' : props.side_bar ? 390 : 500
                 },
                 'soundcloud' : {
                     'height' : 150
@@ -66,7 +66,7 @@ export default class ScrollStage extends Component {
                          style={{height: that.getHeight.call(that, item) + that.state.additionalItemHeigth}}>
 
                 <ItemTitle actions={that.props.actions} item={item} />
-                {that.getTargetComponent(item, isCurrent)}
+                {that.getTargetComponent(item, isCurrent, that.props.isMobile)}
                 <ItemFooter actions={that.props.actions} item={item} />
             </div>)
         });
@@ -152,28 +152,28 @@ export default class ScrollStage extends Component {
         this.props.actions.scrollToIndex(0, this.props.query._hash);
     }
 
-    getTargetComponent(item, isCurrent) {
+    getTargetComponent(item, isCurrent, isMobile) {
         switch (item.type) {
            case "img" :
-                return <Image isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Image isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "gif" :
-                return <Image isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Image isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "youtube" :
-                return <Youtube isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Youtube isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "soundcloud" :
-                return <Soundcloud isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Soundcloud isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "twitch" :
-                return <Twitch isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Twitch isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "vimeo" :
-                return <Vimeo isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Vimeo isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "video" :
-                return <Video isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Video isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             default :
                 return <div></div>

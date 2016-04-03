@@ -6,8 +6,9 @@ import * as Actions from '../actions/Actions';
 import SearchBar from '../components/SearchBar';
 import ScrollStage from '../components/ScrollStage';
 import BreadCrumbs from '../components/BreadCrumbs';
+import Suggestions from '../components/Suggestions';
 import InfoBox from '../components/InfoBox';
-import SingleView from '../components/SingleView.js';
+import SingleView from '../components/SingleView';
 import Lists from '../components/Lists';
 
 class GSIApp extends Component {
@@ -20,7 +21,7 @@ class GSIApp extends Component {
         const { gsi, actions } = this.props;
         return (
             <div className="container row">
-                <SearchBar search={gsi.search} actions={actions} />
+                <SearchBar side_bar={gsi.side_bar} search={gsi.search} actions={actions}/>
                 { gsi.single_view ?
                     <div className='content-container'>
                         { gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
@@ -30,13 +31,28 @@ class GSIApp extends Component {
                     </div>
                 :
                     <div className='content-container'>
-                        <div className='three columns'>
+                        {gsi.suggest_view ? <Suggestions suggestions={gsi.suggestions} actions={actions}/> : null}
+                        <div className={
+                            gsi.side_bar ?
+                                gsi.isMobile ? 'six columns side-bar'
+                                : 'three columns side-bar'
+                            : 'far-left side-bar'
+                        }>
                             <InfoBox isLoading={gsi.search.isLoading} actions={actions} queries={gsi.queries}/>
-                            <Lists actions={actions} fragments={gsi.fragments}/>
+                            <Lists actions={actions} fragments={gsi.fragments} suggestions={gsi.suggestions}/>
                         </div>
-                        <div className='eight columns'>
+                        <div className={
+                            gsi.side_bar ?
+                                gsi.isMobile ? 'five columns scroll-stage'
+                                : 'eight columns scroll-stage'
+                            : 'twelve columns scroll-stage'}>
                             { gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
-                            { gsi.queries.length ? <ScrollStage isLoading={gsi.search.isLoading} lists={gsi.lists} actions={actions} query={gsi.queries[0]} /> : null}
+                            { gsi.queries.length ? <ScrollStage
+                                side_bar={gsi.side_bar}
+                                isMobile={gsi.is_mobile}
+                                isLoading={gsi.search.isLoading}
+                                lists={gsi.lists} actions={actions}
+                                query={gsi.queries[0]} /> : null}
                         </div>
                     </div>
                 }

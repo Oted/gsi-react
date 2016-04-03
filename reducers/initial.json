@@ -1,4 +1,69 @@
 {
+    "suggestions" : [
+        {
+            "hash" : "2a3afd3d861f9c3040969d6288a81082",
+            "name" : "documentaries",
+            "icon" : "ion-videocamera"
+        },
+        {
+            "hash" : "dda0b8ef24c954332186fc78094ddf35",
+            "name" : "funny",
+            "icon" : "ion-happy-outline"
+        },
+        {
+            "hash" : "7e2d033d3f576844d6cd4500bd416d02",
+            "name" : "news",
+            "icon" : "ion-earth"
+        },
+        {
+            "hash" : "3a379f0d59a2a2c869ebf0265d6b73f9",
+            "name" : "scenery",
+            "icon" : "ion-image"
+        },
+        {
+            "hash" : "0ac46dbafcd7acbc12421411be88ec55",
+            "name" : "wallpapers",
+            "icon" : "ion-android-desktop"
+        },
+        {
+            "hash" : "30cfa7c1519ba4489df86b38cb3d8045",
+            "name" : "music",
+            "icon" : "ion-music-note"
+        },
+        {
+            "hash" : "dd8bdacabebb421edbfa8461433cfcad",
+            "name" : "creative",
+            "icon" : "ion-paintbrush"
+        },
+        {
+            "hash" : "a10964de78e9c8205908c3b286f48700",
+            "name" : "animals",
+            "icon" : "ion-ios-paw"
+        },
+        {
+            "hash" : "0ad198a7409eb31fa1eb1e78a3aff5fb",
+            "name" : "sport",
+            "icon" : "ion-ios-football"
+        },
+        {
+            "hash" : "f5db5a17fb27d683cd12552709f8c27a",
+            "name" : "gaming",
+            "icon" : "ion-ios-game-controller-a"
+        },
+        {
+            "hash" : "5d2a7a3d84ec6aa6c5a4ea02d14c30d9",
+            "name" : "space",
+            "icon" : "ion-planet"
+        },
+        {
+            "search" : "nsfw",
+            "name" : "nsfw",
+            "icon" : "ion-alert-circled"
+        }
+    ],
+    "is_mobile": false,
+    "suggest_view" : true,
+    "side_bar" : true,
     "single_view" : null,
     "fragments" : {},
     "queries" : [],
