@@ -71,13 +71,19 @@ export default function gsi(state = initState, action) {
             });
 
             if (index > -1) {
-                return _.merge({}, state, {'queries' : state.queries.splice(0,0,state.queries.splice(index, 1)[0])})
+                return _.merge({}, state, {'queries' : state.queries.splice(0,index)})
             }
 
             return _.merge({}, state, {'queries' : [action.query, ...state['queries']]});
 
         case actions.GOT_ITEM:
             var newObj = {'single_view' : action.res.body};
+            return _.merge({}, state, newObj);
+
+        case actions.SEEN_ITEMS:
+            var newObj = {'seen' : {}};
+            newObj.seen[action.res.body.query._hash] = utils.generateSeen(state.seen[action.res.body.query._hash], action.res.body.items);
+
             return _.merge({}, state, newObj);
 
         case actions.UNVIEW_ITEM:

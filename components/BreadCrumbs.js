@@ -13,9 +13,6 @@ export default class BreadCrumbs extends Component {
 
         const { queries, actions } = this.props;
 
-        // <div className='erase=breadcrumbs'>
-            // <i className='ion-trash-a'></i>
-        // </div>
         return (
             <div>
                 <ul className="breadcrumb">

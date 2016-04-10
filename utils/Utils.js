@@ -4,6 +4,42 @@ export function getActiveTypes(types) {
     })]);
 }
 
+export function generateSeen(currentSeen = {}, list) {
+    let threshold = 3600 * 1000 * 4;
+    var newSeen = currentSeen;
+
+    newSeen.first = newSeen.first || +(new Date(0));
+    newSeen.last  =  newSeen.last || +(new Date());
+
+    let distance = list[list.length - 1]._sort - newSeen.first;
+
+    // console.log('distance stuff', distance, {
+        // listFirst : new Date(list[0]._sort),
+        // listLast : new Date(list[list.length - 1]._sort),
+        // currentFirst : new Date(newSeen.first),
+        // currentLast : new Date(newSeen.last)
+    // });
+
+    if (distance > threshold) {
+        return {
+            first : list[0]._sort,
+            last : list[list.length - 1]._sort
+        }
+    }
+
+    list.forEach(item => {
+        if (item._sort > newSeen.first) {
+            newSeen.first = item._sort;
+        }
+
+        if (item._sort < newSeen.last) {
+            newSeen.last = item._sort;
+        }
+    });
+
+    return newSeen;
+}
+
 export function filterDuplicates(items) {
     let hash = {};
 

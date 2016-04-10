@@ -15,42 +15,63 @@ export function getItem(hash) {
         .end();
 }
 
-export function getItems(search, types) {
+export function getItems(search, types, seen = {}) {
     let typeString = types.map(type => {
         return '&types=' + type;
     }).join('');
 
+    let seenString = '';
+
+    if (seen.first) {
+        seenString += '&first=' + seen.first;
+    }
+
+    if (seen.last) {
+        seenString += '&last=' + seen.last;
+    }
+
     if (!search) {
         return request
-            .get(prefix + '/api/items?' + typeString.slice(1))
+            .get(prefix + '/api/items?' + typeString.slice(1) + seenString)
             .use(superagentPromise)
             .end();
     }
 
     return request
-        .get(prefix + '/api/items?search=' + search + typeString)
+        .get(prefix + '/api/items?search=' + search + typeString + seenString)
         .use(superagentPromise)
         .end();
 }
 
-export function getItemsWithQuery(hash) {
-    return request
-        .get(prefix + '/api/items?query=' + hash)
-        .use(superagentPromise)
-        .end();
-}
+export function getItemsWithQuery(hash, seen = {}) {
+    let seenString = '';
 
-export function fetchItems(hash, list) {
-
-    let first = list[0]._sort;
-    let last = list[list.length - 1]._sort;
-    let firstLastString = '';
-
-    if (first && last && (first !== last)) {
-        firstLastString = '&last=' + last;
+    if (seen.first) {
+        seenString += '&first=' + seen.first;
     }
 
-    return request.get(prefix + '/api/items?query=' + hash + firstLastString).use(superagentPromise).end();
+    if (seen.last) {
+        seenString += '&last=' + seen.last;
+    }
+
+    return request
+        .get(prefix + '/api/items?query=' + hash + seenString)
+        .use(superagentPromise)
+        .end();
+}
+
+export function fetchItems(hash, seen = {}) {
+    let seenString = '';
+
+    if (seen.first) {
+        seenString += '&first=' + seen.first;
+    }
+
+    if (seen.last) {
+        seenString += '&last=' + seen.last;
+    }
+
+    return request.get(prefix + '/api/items?query=' + hash + seenString).use(superagentPromise).end();
 };
 
 export function getFragments(type) {

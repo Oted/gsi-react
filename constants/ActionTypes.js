@@ -5,6 +5,7 @@ export const TOGGLE_SEARCH_TYPE = 'TOGGLE_SEARCH_TYPE';
 export const SET_SEARCH_TEXT    = 'SET_SEARCH_TEXT';
 export const VIEW_ITEM          = 'VIEW_ITEM';
 export const UNVIEW_ITEM        = 'UNVIEW_ITEM';
+export const SEEN_ITEMS         = 'SEEN_ITEMS';
 
 export const TOGGLE_SUGGEST_VIEW    = 'TOGGLE_SUGGEST_VIEW';
 export const TOGGLE_SIDE_BAR        = 'TOGGLE_SIDE_BAR';

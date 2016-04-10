@@ -102,6 +102,13 @@ export function setCurrentIndex(index, queryId) {
     };
 }
 
+export function seenItems(res) {
+    return {
+        type: actions.SEEN_ITEMS,
+        res
+    };
+}
+
 export function viewItem(hash, item = null) {
     return (dispatch) => {
         if (item) {
@@ -118,9 +125,9 @@ export function init() {
     return (dispatch, getState) => {
 
         if (document.getElementById('list_hash')) {
-            getQueryWithHash(document.getElementById('list_hash').getAttribute('content'));
+            dispatch(getQueryWithHash(document.getElementById('list_hash').getAttribute('content')));
         } else {
-            dispatch(search());
+            dispatch(getQueryWithHash(getState().gsi.default_list));
         }
 
         if (document.getElementById('item_hash')) {
@@ -152,8 +159,9 @@ export function fetch() {
 
         return api.fetchItems(
                 queries[0]._hash,
-                getState().gsi.lists[getState().gsi.queries[0]._hash].items)
+                getState().gsi.seen[getState().gsi.queries[0]._hash])
         .then(function(res) {
+            dispatch(seenItems(res));
             return dispatch(gotItems(null, res));
         });
     }
@@ -161,8 +169,12 @@ export function fetch() {
 
 export function getQueryWithHash(hash) {
     return (dispatch, getState) => {
-        return api.getItemsWithQuery(hash).then(function(res) {
+        return api.getItemsWithQuery(
+                    hash,
+                    getState().gsi.seen[hash]
+                ).then(function(res) {
             dispatch(setActiveQuery(res.body.query));
+            dispatch(seenItems(res));
             return dispatch(gotItems(null, res));
         });
     }
@@ -179,7 +191,12 @@ export function search(term) {
                 term ? term : search.for,
                 utils.getActiveTypes(search.in))
         .then(function(res) {
+            if (getState().gsi.seen[res.body.query._hash]) {
+                console.log('this has been seen before', res);
+            }
+
             dispatch(setActiveQuery(res.body.query));
+            dispatch(seenItems(res));
             return dispatch(gotItems(null, res));
         });
     }
