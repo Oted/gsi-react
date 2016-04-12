@@ -194,8 +194,13 @@ body {
 }
 
 .breadcrumb li {
+    color:grey;
     position: relative;
     float: left;
+}
+
+.breadcrumb > li:last-child {
+    color:black;
 }
 
 .breadcrumb li span {

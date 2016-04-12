@@ -16,7 +16,7 @@ export default class BreadCrumbs extends Component {
         return (
             <div>
                 <ul className="breadcrumb">
-                    {queries.filter(q => {return q.results > 0}).reverse().map(q => {
+                    {queries.filter(q => {return q.results > 0}).map(q => {
                         return (<Motion defaultStyle={{x: 0}} style={{x: spring(1)}}>
                             {value =>
                                 <li style={{opacity : value.x}} key={'bread-' + q._hash} onClick={this.onClick.bind(that, q)}>

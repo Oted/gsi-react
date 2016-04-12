@@ -52,7 +52,7 @@ class GSIApp extends Component {
                                 isMobile={gsi.is_mobile}
                                 isLoading={gsi.search.isLoading}
                                 lists={gsi.lists} actions={actions}
-                                query={gsi.queries[0]} /> : null}
+                                query={gsi.queries[gsi.queries.length - 1]} /> : null}
                         </div>
                     </div>
                 }

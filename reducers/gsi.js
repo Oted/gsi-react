@@ -61,20 +61,26 @@ export default function gsi(state = initState, action) {
             return _.merge({}, state, newObj);
 
         case actions.SET_ACTIVE_QUERY:
-            let index = -1;
-            let exist = state.queries.filter(function(q, i) {
-                if (action.query._hash === q._hash) {
+            var index = -1;
+            var tempState = _.clone(state);
+
+            delete tempState.queries;
+
+            state.queries.forEach(function(q, i) {
+                if (q._hash === action.query._hash) {
                     index = i;
                 }
-
-                return action.query._hash === q._hash;
             });
 
             if (index > -1) {
-                return _.merge({}, state, {'queries' : state.queries.splice(0,index)})
-            }
+                if (state.queries.length < 2 || index === state.queries.length) {
+                    return state;
+                }
 
-            return _.merge({}, state, {'queries' : [action.query, ...state['queries']]});
+                return _.merge({}, tempState, {'queries' : [...state.queries.slice(0, index + 1)]});
+            } else {
+                return _.merge({}, state, {'queries' : [...state['queries'], ...action.query]});
+            }
 
         case actions.GOT_ITEM:
             var newObj = {'single_view' : action.res.body};
@@ -101,7 +107,7 @@ export default function gsi(state = initState, action) {
 
             newObj.lists[action.res.body.query._hash].items = utils.filterDuplicates(newObj.lists[action.res.body.query._hash].items);
 
-            let tempState = _.merge({}, state, newObj);
+            var tempState = _.merge({}, state, newObj);
 
             //save the state
             storage.saveState(tempState);
