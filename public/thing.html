@@ -28,32 +28,26 @@
     <meta property="og:description"  content="A new way to discover the internet"/>
 
     {{#youtube}}
-        <meta property="og:image"           content="http://i.ytimg.com/vi/{{{data}}}/maxresdefault.jpg"/>
+        <meta property="og:image"           content="http://i1.ytimg.com/vi/rdKBc74kkD0/{{{data}}}/0.jpg"/>
         <meta property="og:type"            content="video"/>
-        <meta property="og:video:url"       content="http://www.youtube.com/embed/{{{data}}}"/>
+        <meta property="og:video:url"       content="http://www.youtube.com/v/{{{data}}}"/>
+        <meta property="og:video:type"      content="application/x-shockwave-flash"/>
         <meta property="og:video:width"     content="1280"/>
         <meta property="og:video:height"    content="720"/>
-        <meta property="og:video:type"      content="application/x-shockwave-flash"/>
 
         <meta name="twitter:card"           content="player"/>
         <meta name="twitter:url"            content="http://www.youtube.com/watch?v={{{data}}}"/>
-        <meta name="twitter:image"          content="http://i.ytimg.com/vi/{{{data}}}/maxresdefault.jpg"/>
-        <meta name="twitter:player"         content="http://www.youtube.com/embed/{{{data}}}"/>
+        <meta name="twitter:image"          content="http://i1.ytimg.com/vi/rdKBc74kkD0/{{{data}}}/0.jpg"/>
+        <meta name="twitter:player"         content="http://www.youtube.com/v/{{{data}}}"/>
         <meta name="twitter:player:width"   content="1280"/>
         <meta name="twitter:player:height"  content="720"/>
-        <meta name="twitter:title"          content="{{title}}"/>
-
-        <link rel="shortcut icon"   href="http://s.ytimg.com/yts/img/favicon-{{{data}}}.ico" type="image/x-icon"/>
-        <link rel="icon"            href="http://s.ytimg.com/yts/img/favicon_32-{{{data}}}.png" sizes="32x32"/>
-        <link rel="icon"            href="http://s.ytimg.com/yts/img/favicon_48-{{{data}}}.png" sizes="48x48"/>
-        <link rel="icon"            href="http://s.ytimg.com/yts/img/favicon_96-{{{data}}}.png" sizes="96x96"/>
-        <link rel="icon"            href="http://s.ytimg.com/yts/img/favicon_144-{{{data}}}.png" sizes="144x144"/>
     {{/youtube}}
     {{#video}}
         <meta property="og:video:type"      content="video/mp4" />
         <meta property="og:video"           content="{{{data}}}" />
         <meta property="og:video:url"       content="{{{data}}}" />
         <meta property="og:video:type"      content="application/x-shockwave-flash" />
+
         <meta name="twitter:card"                       content="player" />
         <meta name="twitter:player:width"               content="365" />
         <meta name="twitter:player:height"              content="150" />
@@ -70,6 +64,7 @@
         <meta property="og:video:width"       content="500" />
         <meta property="og:video:height"      content="205" />
         <meta property="og:video:type"        content="video/mp4" />
+
         <meta name="twitter:card"                       content="player" />
         <meta name="twitter:player:width"               content="365" />
         <meta name="twitter:player:height"              content="150" />
@@ -83,6 +78,7 @@
         <meta name="twitter:card"       content="photo" />
         <meta name="twitter:image"      content="{{{data}}}" />
         <meta name="twitter:image:src"  content="{{{url}}}" />
+
         <meta property="og:type"                content="article" />
         <meta property="og:image"               content="{{{data}}}" />
     {{/img}}
@@ -96,6 +92,7 @@
       <meta property="og:video:type"        content="application/x-shockwave-flash"/>
       <meta property="og:video:width"       content="1280"/>
       <meta property="og:video:height"      content="720"/>
+
       <meta name="twitter:card"             content="player"/>
       <meta name="twitter:image"            content="http://i.vimeocdn.com/video/{{{data}}}_1280x720.webp"/>
       <meta name="twitter:player"           content="http://player.vimeo.com/video/{{{data}}}"/>
