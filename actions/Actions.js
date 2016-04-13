@@ -158,8 +158,8 @@ export function fetch() {
         dispatch(loadingItems(true));
 
         return api.fetchItems(
-                queries[0]._hash,
-                getState().gsi.seen[getState().gsi.queries[0]._hash])
+                queries[queries.length - 1]._hash,
+                getState().gsi.seen[queries[queries.length - 1]._hash])
         .then(function(res) {
             dispatch(seenItems(res));
             return dispatch(gotItems(null, res));

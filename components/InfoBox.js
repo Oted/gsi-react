@@ -14,7 +14,7 @@ export default class InfoBox extends Component {
                 <img id='logo-play' className='logo-top' src={'./' + prefix + 'common/logo_eye.png'}></img>
                 <img id="logo-bright-top" className='logo-top' src={'./' + prefix + 'common/logo_around_bright.png'}></img>
                 <img id="logo-text-top" className='logo-top' src={'./' + prefix + 'common/logo_text.png'}></img>
-                { queries.length ? <h4> { queries[0].results } things to view </h4> : null }
+                { queries.length ? <h4> { queries[queries.length - 1].results } things to view </h4> : null }
             </div>
         );
     }
