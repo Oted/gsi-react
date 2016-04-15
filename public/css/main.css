@@ -319,32 +319,33 @@ body {
 }
 
 .logo-top {
-  vertical-align:middle;
-  width : 100px;
-  position:absolute;
-  top:1rem;
-  margin-left:-50px;
-  z-index:1;
-  -webkit-transition: 2s ease-in-out;
-  -moz-transition: 2s ease-in-out;
-  -o-transition: 2s ease-in-out;
-  transition: 2s ease-in-out;
+    vertical-align:middle;
+    width : 100px;
+    position:absolute;
+    top:1rem;
+    margin-left:-50px;
+    z-index:1;
+    -webkit-transition: 2s ease-in-out;
+    -moz-transition: 2s ease-in-out;
+    -o-transition: 2s ease-in-out;
+    transition: 2s ease-in-out;
 }
 
 #logo-bright-top {
-  -webkit-transition: 0.75s ease-in-out;
-  -moz-transition: 0.75s ease-in-out;
-  -o-transition: 0.75s ease-in-out;
-  transition: 0.75s ease-in-out;
-  z-index:2;
-  opacity:0;
+    -webkit-transition: 0.75s ease-in-out;
+    -moz-transition: 0.75s ease-in-out;
+    -o-transition: 0.75s ease-in-out;
+    transition: 0.75s ease-in-out;
+    z-index:2;
+    opacity:0;
 }
 
 #logo-text-top {
-  top:-1.5rem;
-  vertical-align:middle;
-  width : 150px;
-  margin-left:-75px;
+    transition-timing-function: linear;
+    top:-1.5rem;
+    vertical-align:middle;
+    width : 150px;
+    margin-left:-75px;
 }
 
 /**

@@ -169,6 +169,8 @@ export function fetch() {
 
 export function getQueryWithHash(hash) {
     return (dispatch, getState) => {
+        dispatch(loadingItems(true));
+
         return api.getItemsWithQuery(
                     hash,
                     getState().gsi.seen[hash]

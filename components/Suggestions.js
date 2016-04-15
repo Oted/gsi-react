@@ -23,6 +23,7 @@ export default class Suggestions extends Component {
     }
 
     render() {
+        console.log('here');
         var that = this;
         const { actions, suggestions } = this.props;
 

@@ -31,7 +31,9 @@ class GSIApp extends Component {
                     </div>
                 :
                     <div className='content-container'>
-                        {gsi.suggest_view ? <Suggestions suggestions={gsi.suggestions} actions={actions}/> : null}
+                        {gsi.suggest_view &&
+                            !document.getElementById('item_hash') &&
+                            !document.getElementById('list_hash') ? <Suggestions suggestions={gsi.suggestions} actions={actions}/> : null}
                         <div className={
                             gsi.side_bar ?
                                 gsi.isMobile ? 'six columns side-bar'
