@@ -11,8 +11,7 @@ import superagentPromise from 'superagent-promise-plugin';
 export function getItem(hash) {
     return request
         .get(prefix + '/api/item?hash=' + hash)
-        .use(superagentPromise)
-        .end();
+        .use(superagentPromise);
 }
 
 export function getItems(search, types, seen = {}) {
@@ -33,14 +32,12 @@ export function getItems(search, types, seen = {}) {
     if (!search) {
         return request
             .get(prefix + '/api/items?' + typeString.slice(1) + seenString)
-            .use(superagentPromise)
-            .end();
+            .use(superagentPromise);
     }
 
     return request
         .get(prefix + '/api/items?search=' + search + typeString + seenString)
-        .use(superagentPromise)
-        .end();
+        .use(superagentPromise);
 }
 
 export function getItemsWithQuery(hash, seen = {}) {
@@ -56,8 +53,7 @@ export function getItemsWithQuery(hash, seen = {}) {
 
     return request
         .get(prefix + '/api/items?query=' + hash + seenString)
-        .use(superagentPromise)
-        .end();
+        .use(superagentPromise);
 }
 
 export function fetchItems(hash, seen = {}) {
@@ -71,15 +67,15 @@ export function fetchItems(hash, seen = {}) {
         seenString += '&last=' + seen.last;
     }
 
-    return request.get(prefix + '/api/items?query=' + hash + seenString).use(superagentPromise).end();
+    return request.get(prefix + '/api/items?query=' + hash + seenString).use(superagentPromise);
 };
 
 export function getFragments(type) {
     let amount = 17;
 
     return Promise.all([
-        request.get(prefix + '/api/fragments?type=trending&amount=' + amount).use(superagentPromise).end(),
-        request.get(prefix + '/api/fragments?type=fresh&amount=' + amount).use(superagentPromise).end(),
-        request.get(prefix + '/api/fragments?type=popular&amount=' + amount).use(superagentPromise).end()
+        request.get(prefix + '/api/fragments?type=trending&amount=' + amount).use(superagentPromise),
+        request.get(prefix + '/api/fragments?type=fresh&amount=' + amount).use(superagentPromise),
+        request.get(prefix + '/api/fragments?type=popular&amount=' + amount).use(superagentPromise)
     ]);
 };
