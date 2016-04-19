@@ -19,9 +19,14 @@ class GSIApp extends Component {
 
     render() {
         const { gsi, actions } = this.props;
+
         return (
             <div className="container row">
-                <SearchBar side_bar={gsi.side_bar} search={gsi.search} actions={actions}/>
+                <SearchBar
+                   isMobile={gsi.is_mobile}
+                   side_bar={gsi.side_bar}
+                   search={gsi.search}
+                   actions={actions}/>
                 { gsi.single_view ?
                     <div className='content-container'>
                         { gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
@@ -33,21 +38,13 @@ class GSIApp extends Component {
                     <div className='content-container'>
                         {gsi.suggest_view &&
                             !document.getElementById('item_hash') &&
-                            !document.getElementById('list_hash') ? <Suggestions suggestions={gsi.suggestions} actions={actions}/> : null}
-                        <div className={
-                            gsi.side_bar ?
-                                gsi.isMobile ? 'six columns side-bar'
-                                : 'three columns side-bar'
-                            : 'far-left side-bar'
-                        }>
+                            !document.getElementById('list_hash') ? <Suggestions isMobile={gsi.is_mobile} suggestions={gsi.suggestions} actions={actions}/> : null}
+                        <div className={gsi.side_bar ? 'side-bar' : 'far-left side-bar'}>
                             <InfoBox isLoading={gsi.search.isLoading} actions={actions} queries={gsi.queries}/>
                             <Lists actions={actions} fragments={gsi.fragments} suggestions={gsi.suggestions}/>
                         </div>
                         <div className={
-                            gsi.side_bar ?
-                                gsi.isMobile ? 'five columns scroll-stage'
-                                : 'eight columns scroll-stage'
-                            : 'twelve columns scroll-stage'}>
+                            gsi.side_bar ? 'eight columns scroll-stage offset-by-three' : 'twelve columns scroll-stage'}>
                             { gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
                             { gsi.queries.length ? <ScrollStage
                                 side_bar={gsi.side_bar}

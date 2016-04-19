@@ -5,6 +5,7 @@ import DropDown from '../components/DropDown'
 export default class BreadCrumbs extends Component {
     onClick(e) {
         this.props.actions.unviewItem();
+        this.props.actions.shineLogo();
         this.props.actions.setActiveQuery(e);
     }
 

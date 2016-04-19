@@ -19,7 +19,6 @@ export default class InfoBox extends Component {
 
         if (!this.props.isLoading) {
             this.state.spun = 0;
-            this.maybeShine();
         } else {
             this.maybeSpin();
         }
@@ -53,19 +52,5 @@ export default class InfoBox extends Component {
                 that.maybeSpin();
             }
         }, 1500);
-    }
-
-    maybeShine() {
-        var e = document.getElementById('logo-bright-top');
-
-        if (!e) {
-            return;
-        }
-
-        e.style.opacity = 1;
-
-        setTimeout(function(){
-            e.style.opacity = 0;
-        }, 750);
     }
 }

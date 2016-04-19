@@ -24,16 +24,16 @@ export default class Suggestions extends Component {
 
     render() {
         var that = this;
-        const { actions, suggestions } = this.props;
+        const { actions, suggestions, isMobile } = this.props;
 
         return (<div
                 onClick={that.props.actions.toggleSuggestView.bind(that)}
                 className='overlay'>
-            <Motion defaultStyle={{x: -200, y : 0}} style={{x: spring(13), y: spring(70)}}>
+            <Motion defaultStyle={{scale : 0}} style={{scale : spring(1)}}>
                 {value =>
                     <div
                     onClick={that.modalClick.bind(that)}
-                    style={{top : value.x, width : value.y + '%'}} id='suggestion-modal'>
+                    style={{transform: 'scale(' + value.scale + ')'}} id='suggestion-modal'>
                         <h3> What are you looking for today? </h3>
                         <div className='suggestions'>
                             {suggestions.map(suggestion => {

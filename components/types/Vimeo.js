@@ -10,7 +10,9 @@ export default class Vimeo extends Component {
     }
 
     componentDidMount() {
-        this.state.player = $f(document.getElementById('vimeo-' + this.props.item._hash));
+        if (document.getElementById('vimeo-' + this.props.item._hash)) {
+            this.state.player = $f(document.getElementById('vimeo-' + this.props.item._hash));
+        }
     }
 
     render() {

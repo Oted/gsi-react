@@ -11,31 +11,13 @@ export default class ItemFooter extends Component {
     }
 
     render() {
-        const { item, actions } = this.props;
+        const { item, actions, isMobile } = this.props;
 
         return (<div className='item-footer'>
             <div className='footer-fragments-container'>
-                {item.source_type ?
+                {item.category && !isMobile ?
                     <div>
-                        <span> tags : </span>
-                        <span
-                            onClick={this.onClick.bind(this, item.source_type)}
-                            className='footer-fragment'> {item.source_type}
-                        </span>
-                    </div>
-                : null}
-                {item.author ?
-                    <div>
-                        <span> , </span>
-                        <span
-                            onClick={this.onClick.bind(this, item.author)}
-                            className='footer-fragment'> {item.author}
-                        </span>
-                    </div>
-                : null}
-                {item.category ?
-                    <div>
-                        <span> , </span>
+                        <span> category : </span>
                         <span
                             onClick={this.onClick.bind(this, item.category)}
                             className='footer-fragment'> {item.category}

@@ -18,14 +18,14 @@ export default class ScrollStage extends Component {
         super(props);
 
         this.state = {
-            additionalItemHeigth : 100,
+            additionalItemHeigth : props.isMobile ? 125 : 100,
             heights:[],
             typeSettings : {
                 'img' : {
-                    'height' : props.side_bar ? 500 : 700
+                    'height' : 500
                 },
                 'gif' : {
-                    'height' : props.side_bar ? 300 : 500
+                    'height' : 500
                 },
                 // https://developers.google.com/youtube/player_parameters
                 'youtube' : {
@@ -47,7 +47,7 @@ export default class ScrollStage extends Component {
                     'width' : 640
                 },
                 'video' : {
-                    'height' : props.side_bar ? 390 : 500
+                    'height' : props.isMobile ? 390 : props.side_bar ? 390 : 500
                 },
                 'soundcloud' : {
                     'height' : 150
@@ -64,10 +64,9 @@ export default class ScrollStage extends Component {
             return (<div key={that.props.query._hash + '-' + item._hash}
                          className={isCurrent ? 'item current' : 'item'}
                          style={{height: that.getHeight.call(that, item) + that.state.additionalItemHeigth}}>
-
                 <ItemTitle actions={that.props.actions} item={item} />
                 {that.getTargetComponent(item, isCurrent, that.props.isMobile)}
-                <ItemFooter actions={that.props.actions} item={item} />
+                <ItemFooter isMobile={that.props.isMobile} actions={that.props.actions} item={item} />
             </div>)
         });
     }
@@ -173,7 +172,7 @@ export default class ScrollStage extends Component {
                 return <Vimeo isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             case "video" :
-                return <Video isCurrent={!isMobile && isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
+                return <Video isCurrent={isCurrent} item={item} settings={this.state.typeSettings[item.type]}/>
             break;
             default :
                 return <div></div>

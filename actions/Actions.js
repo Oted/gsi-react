@@ -121,6 +121,25 @@ export function viewItem(hash, item = null) {
     }
 }
 
+/**
+ *  Thunks below
+ */
+export function shineLogo() {
+    return (dispatch, getState) => {
+        var e = document.getElementById('logo-bright-top');
+
+        if (!e) {
+            return;
+        }
+
+        e.style.opacity = 1;
+
+        setTimeout(function(){
+            e.style.opacity = 0;
+        }, 750);
+    }
+}
+
 export function init() {
     return (dispatch, getState) => {
 
@@ -170,6 +189,7 @@ export function fetch() {
 export function getQueryWithHash(hash) {
     return (dispatch, getState) => {
         dispatch(loadingItems(true));
+        dispatch(shineLogo());
 
         return api.getItemsWithQuery(
                     hash,
@@ -187,6 +207,7 @@ export function search(term) {
         const { search } = getState().gsi;
         dispatch(scrollToPosition(0));
         dispatch(unviewItem());
+        dispatch(shineLogo());
         dispatch(loadingItems(true));
 
         return api.getItems(

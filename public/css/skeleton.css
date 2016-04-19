@@ -42,14 +42,72 @@
   box-sizing: border-box; }
 
 /* For devices larger than 400px */
-@media (min-width: 400px) {
+@media handheld, screen and (max-width: 900px) {
   .container {
-    width: 85%;
-    padding: 0; }
+    padding: 0;
+  }
+
+  .item {
+    width:90%;
+    padding-left:1rem;
+    padding-right:1rem;
+  }
+
+  .search-container > * {
+    margin-right:1rem;
+  }
+
+  #suggestion-modal {
+    width:95%;
+  }
+
+  .scroll-back {
+    right: 1rem;
+    font-size: 3rem;
+  }
+
+  .side-bar {
+    position: initial;
+    width:100%;
+  }
+
+  .list-fragment {
+    font-size: 2.5rem;
+    padding: 1.5rem;
+  }
+
+  .item-footer {
+    font-size: 3rem;
+  }
+
+  .far-left {
+    position: fixed;
+  }
+
+  .search-input {
+    width: 150px;
+  }
+
+  .content-container {
+    margin-top: 6rem;
+  }
+
+  .toggle-side {
+    padding-left: 0rem;
+  }
+
+  .scroll-stage {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
 }
 
-/* For devices larger than 550px */
-@media (min-width: 550px) {
+/* For devices larger than 901px */
+@media handheld, screen and (min-width: 901px) {
+  .search-input {
+    width: 25rem;
+  }
+
   .container {
     width: 80%; }
   .column,
@@ -345,7 +403,7 @@ p,
 ul,
 ol,
 form {
-  margin-bottom: 2.5rem; }
+  margin-bottom: 0.5rem; }
 
 
 /* Utilities
