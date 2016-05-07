@@ -40,8 +40,17 @@ class GSIApp extends Component {
                             !document.getElementById('item_hash') &&
                             !document.getElementById('list_hash') ? <Suggestions isMobile={gsi.is_mobile} suggestions={gsi.suggestions} actions={actions}/> : null}
                         <div className={gsi.side_bar ? 'side-bar' : 'far-left side-bar'}>
-                            <InfoBox isLoading={gsi.search.isLoading} actions={actions} queries={gsi.queries}/>
-                            <Lists actions={actions} fragments={gsi.fragments} suggestions={gsi.suggestions}/>
+                            <InfoBox
+                                isLoading={gsi.search.isLoading}
+                                actions={actions}
+                                queries={gsi.queries}/>
+                            <Lists
+                                actions={actions}
+                                fragments={gsi.fragments}
+                                suggestions={gsi.suggestions}
+                                isMobile={gsi.is_mobile}
+                                sideBar={gsi.side_bar}
+                            />
                         </div>
                         <div className={
                             gsi.side_bar ? 'eight columns scroll-stage offset-by-three' : 'twelve columns scroll-stage'}>

@@ -22,7 +22,7 @@ export default class ScrollStage extends Component {
             heights:[],
             typeSettings : {
                 'img' : {
-                    'height' : 500
+                    'height' : props.isMobile ? 400 : 500
                 },
                 'gif' : {
                     'height' : 500

@@ -5,6 +5,11 @@ export default class Lists extends Component {
         var that = this;
 
         this.props.actions.setSearchText(word);
+
+        if (this.props.isMobile && this.props.sideBar) {
+            this.props.actions.toggleSideBar();
+        }
+
         setTimeout(function() {
             that.props.actions.search();
         }, 100);
@@ -12,6 +17,10 @@ export default class Lists extends Component {
 
     suggestClick(suggestion) {
         var that = this;
+
+        if (this.props.isMobile && this.props.sideBar) {
+            this.props.actions.toggleSideBar();
+        }
 
         suggestion.hash ?
             this.props.actions.getQueryWithHash(suggestion.hash) :

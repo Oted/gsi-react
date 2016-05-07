@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import SingleItemTitle from './SingleItemTitle';
-import SingleItemFooter from './SingleItemFooter';
+import SingleItemFooter from './ItemFooter';
 
 import Image from '../components/types/Image';
 import Youtube from '../components/types/Youtube';
@@ -14,7 +14,7 @@ export default class SingleView extends Component {
         const { item, actions } = this.props;
 
         if (!item) {
-            return (<div> </div>);
+            return (<div></div>);
         }
 
         return (

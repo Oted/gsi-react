@@ -31,7 +31,7 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -169,6 +169,17 @@
   .offset-by-one-half.columns     { margin-left: 52%; }
 }
 
+@media handheld, screen and (min-width: 1900px) {
+  .side-bar {
+    width: 20%;
+  }
+}
+
+@media handheld, screen and (min-width: 2150px) {
+  .side-bar {
+    width: 19%;
+  }
+}
 
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

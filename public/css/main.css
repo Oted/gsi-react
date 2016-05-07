@@ -434,9 +434,8 @@ body {
 }
 
 .footer-fragments-container {
-    display: inline-flex;
+    float:left;
     font-size:1.5rem;
-    float: left;
 }
 
 .footer-fragment {
@@ -450,16 +449,14 @@ body {
 }
 
 .footer-middle {
-    float: right;
-    right: 42%;
-    position: absolute;
+    font-size: 1.5rem;
+    margin-left: 8rem;
     display: inline-flex;
 }
 
 .footer-middle  > div {
     cursor:pointer;
-    padding-left:2rem;
-    margin-right:2rem;
+    margin-right:4rem;
 }
 
 .footer-middle > div:hover {

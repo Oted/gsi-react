@@ -23,16 +23,34 @@ export default class ItemFooter extends Component {
                             className='footer-fragment'> {item.category}
                         </span>
                     </div>
+                : item.author && !isMobile ?
+                    <div>
+                        <span> author : </span>
+                        <span
+                            onClick={this.onClick.bind(this, item.author)}
+                            className='footer-fragment'> {item.author}
+                        </span>
+                    </div>
+                : item.source_type && !isMobile ?
+                    <div>
+                        <span> from : </span>
+                        <span
+                            onClick={this.onClick.bind(this, item.source_type)}
+                            className='footer-fragment'> {item.source_type}
+                        </span>
+                    </div>
                 : null}
             </div>
             <div className='footer-middle'>
-                <div onClick={this.inspect.bind(this)}
-                     className='inspect'>
-                    <i className='ion-log-out'></i>
+                <div onClick={this.inspect.bind(this)} className='inspect'>
+                    <span>
+                        new tab
+                    </span>
                 </div>
-                <div onClick={this.goToSource.bind(this)}
-                     className='source tooltip-bottom'>
-                    <i className='ion-log-in'></i>
+                <div onClick={this.goToSource.bind(this)} className='source tooltip-bottom'>
+                    <span>
+                        source
+                   </span>
                 </div>
             </div>
 
