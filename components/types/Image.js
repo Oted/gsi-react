@@ -16,6 +16,6 @@ export default class Image extends Component {
     };
 
     inspect() {
-        window.open('http://37.139.19.174/thing/' + this.props.item._hash);
+        window.open(this.props.item.source);
     }
 }
