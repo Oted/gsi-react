@@ -35,7 +35,32 @@ export default class Lists extends Component {
             {fragments.trending ? this.generateList('trending') : null}
             {fragments.popular ? this.generateList('popular') : null}
             {fragments.fresh ? this.generateList('fresh') : null}
+            {this.info()}
         </div>);
+    }
+
+    info() {
+        return (
+            <div className='list social-container'>
+                <span className='blue' onClick={this.openFeedback.bind(this)}> we
+                    <span style={{color:'red'}}> ❤ </span>
+                        your feedback
+                    </span>
+                <a target='_blank' href='http://twitter.com/GetSomeInternet' className='twitter-colour'>
+                    <i className='ion-social-twitter'></i>
+                </a>
+                <a target='_blank' href='http://www.instagram.com/getsomeinternet/' className='instagram-colour'>
+                    <i className='ion-social-instagram-outline'></i>
+                </a>
+                <a target='_blank' href='http://www.facebook.com/getsomeinternet/' className='facebook-colour'>
+                    <i className='ion-social-facebook'></i>
+                </a>
+            </div>
+        )
+    }
+
+    openFeedback() {
+        window.open('http://getsomeinternet.typeform.com/to/eSW7He');
     }
 
     generateSuggestions(suggestions) {

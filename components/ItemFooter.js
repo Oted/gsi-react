@@ -41,18 +41,20 @@ export default class ItemFooter extends Component {
                     </div>
                 : null}
             </div>
-            <div className='footer-middle'>
-                <div onClick={this.inspect.bind(this)} className='inspect'>
-                    <span>
-                        new tab
-                    </span>
+            {!isMobile ?
+                <div className='footer-middle'>
+                    <div onClick={this.inspect.bind(this)} className='inspect'>
+                        <span>
+                            new tab
+                        </span>
+                    </div>
+                    <div onClick={this.goToSource.bind(this)} className='source tooltip-bottom'>
+                        <span>
+                            source
+                       </span>
+                    </div>
                 </div>
-                <div onClick={this.goToSource.bind(this)} className='source tooltip-bottom'>
-                    <span>
-                        source
-                   </span>
-                </div>
-            </div>
+            : null}
 
             <div className='footer-sharing'>
                 <div onClick={this.copyLinkPrompt.bind(this)}
@@ -76,22 +78,22 @@ export default class ItemFooter extends Component {
     }
 
     inspect() {
-        window.open('http://37.139.19.174/thing/' + this.props.item._hash);
+        window.open('http://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 
     copyLinkPrompt() {
-        prompt.bind(this,'Copy the link below and share with beloved friends and foes!',
-                          'http://37.139.19.174/thing/' + this.props.item._hash);
+        prompt('Copy the link below and share with beloved friends and foes!',
+                          'http://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 
     twitterShare() {
         window.open('https://twitter.com/intent/tweet?text=' +
                 this.props.item.title +
-                '&url=http://37.139.19.174/thing/' +
+                '&url=http://getsomeinternet.com/thing/' +
                 this.props.item._hash + '&via=GetSomeInternet');
     }
 
     facebookShare() {
-        window.open('https://www.facebook.com/sharer/sharer.php?u=http://37.139.19.174/thing/' + this.props.item._hash);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=http://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 }

@@ -167,6 +167,28 @@ body {
     background-color: white;
 }
 
+.social-container {
+    font-size: 3rem;
+}
+
+.social-container > * {
+    padding-bottom:1rem;
+}
+
+.social-container > span {
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+}
+
+.social-container > a {
+    display: inline-block;
+    text-align: center;
+    width: 33%;
+}
+
 .list > ul {
     list-style:none;
 }
@@ -386,6 +408,10 @@ body {
     border: 1px solid #E1E8ED;
     text-align: center;
     background-color: white;
+}
+
+.instagram-colour {
+    color:#9b6954;
 }
 
 .facebook-colour {

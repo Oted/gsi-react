@@ -22,10 +22,10 @@ export default class ScrollStage extends Component {
             heights:[],
             typeSettings : {
                 'img' : {
-                    'height' : props.isMobile ? 400 : 500
+                    'height' : props.isMobile ? 350 : 500
                 },
                 'gif' : {
-                    'height' : 500
+                    'height' : props.isMobile ? 350 : 500
                 },
                 // https://developers.google.com/youtube/player_parameters
                 'youtube' : {
