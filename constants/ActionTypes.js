@@ -8,6 +8,8 @@ export const UNVIEW_ITEM        = 'UNVIEW_ITEM';
 export const SEEN_ITEMS         = 'SEEN_ITEMS';
 
 export const TOGGLE_SUGGEST_VIEW    = 'TOGGLE_SUGGEST_VIEW';
+export const TOGGLE_AUTOPLAY        = 'TOGGLE_AUTOPLAY';
+export const TOGGLE_SETTINGS_VIEW   = 'TOGGLE_SETTINGS_VIEW';
 export const TOGGLE_SIDE_BAR        = 'TOGGLE_SIDE_BAR';
 export const LOADING_ITEMS          = 'LOADING_ITEMS';
 export const SET_CURRENT_INDEX      = 'SET_CURRENT_INDEX';

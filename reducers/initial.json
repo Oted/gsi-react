@@ -63,6 +63,8 @@
     ],
     "is_mobile": false,
     "suggest_view" : true,
+    "settings_view" : false,
+    "autoplay" : true,
     "side_bar" : true,
     "single_view" : null,
     "default_list" : "1865b4d72ca745467bcff1c12c15dca9",

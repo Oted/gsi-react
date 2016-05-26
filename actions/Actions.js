@@ -16,6 +16,18 @@ export function toggleSideBar() {
     };
 }
 
+export function toggleAutoplay() {
+    return {
+        type: actions.TOGGLE_AUTOPLAY
+    };
+}
+
+export function toggleSettingsModal() {
+    return {
+        type: actions.TOGGLE_SETTINGS_VIEW
+    };
+}
+
 export function toggleSuggestView() {
     return {
         type: actions.TOGGLE_SUGGEST_VIEW
@@ -154,10 +166,11 @@ export function init() {
         }
 
         return api.getFragments().then(function(allRes) {
+            console.log('gere', allRes);
             let fragments = {
                 'trending' : allRes[0].body,
                 'fresh' : allRes[1].body,
-                'popular' : allRes[2].body
+                'random' : allRes[2].body
             };
 
             return dispatch(gotFragments(fragments));

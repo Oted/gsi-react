@@ -16,6 +16,10 @@ export default class Image extends Component {
     };
 
     inspect() {
+        if (this.props.isMobile) {
+            return;
+        }
+
         window.open(this.props.item.source);
     }
 }

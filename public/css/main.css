@@ -10,7 +10,6 @@ body {
     background-color: #f5f8fa;
 }
 
-
 /**
  *  General
  */
@@ -71,9 +70,26 @@ body {
 }
 
 .search-button {
+    position: absolute;
+    right: 5rem;
+    top: 11px;
+    font-size: 1.7rem;
     cursor: pointer;
-    display: inline-table;
+}
+
+.settings-button {
+    margin-right:1rem;
+    vertical-align: sub;
+    cursor: pointer;
+    float : right;
     font-size: 3rem;
+}
+
+.settings-button:hover {
+    color:#4099FF;
+    transition-duration: 0.5s;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
 }
 
 .search-button:hover {
@@ -84,6 +100,8 @@ body {
 }
 
 .search-input {
+    position: relative;
+    top:1px;
     text-transform:uppercase;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -187,6 +205,18 @@ body {
     display: inline-block;
     text-align: center;
     width: 33%;
+}
+
+.social-container > a:hover {
+    transition-duration: 0.25s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.social-container > span:hover {
+    transition-duration: 0.25s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .list > ul {
@@ -593,7 +623,7 @@ body {
     background-color: rgba(255,255,255,0.8);
 }
 
-#suggestion-modal {
+.modal {
     top:13px;
     width:70%;
     padding:1rem;
@@ -613,13 +643,31 @@ body {
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2);
 }
 
+.autoplay {
+    width:25%;
+    display:inline-table;
+    padding-top: 1rem;
+    min-width: 13rem;
+    background-color: #f5f8fa;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #E1E8ED;
+    text-align: center;
+    margin:1rem;
+    padding-left:1rem;
+    padding-right:1rem;
+}
+
+.autoplay > i {
+    font-size:2rem;
+}
+
 .suggestion {
     width:25%;
     display:inline-table;
     padding-top: 1rem;
     min-width: 13rem;
     background-color: #f5f8fa;
-    text-align:center;
     cursor: pointer;
     border-radius: 3px;
     border: 1px solid #E1E8ED;
@@ -633,23 +681,28 @@ body {
     font-size:4rem;
 }
 
+.suggestions > div:nth-child(1) {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 .toggle-side {
     vertical-align: sub;
     cursor: pointer;
-    font-size: 4rem;
+    font-size:3.5rem;
     float:left;
     padding: 0rem;
     padding-left: 1rem;
-    width: 4rem;
 }
 
 .search-container {
+    margin-right:1rem;
     float:right;
 }
 
 .search-container > * {
     margin-right:1rem;
-    margin-right: 5rem;
 }
 
 .toggle-side:hover {

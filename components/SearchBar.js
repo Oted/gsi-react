@@ -3,6 +3,10 @@ import DropDown from '../components/DropDown'
 
 export default class SearchBar extends Component {
     search(e) {
+        if (e.type === 'click') {
+            this.props.actions.search();
+        }
+
         if (e.which === 13) {
             this.props.actions.search();
         }
@@ -52,21 +56,21 @@ export default class SearchBar extends Component {
                 <div className={side_bar ? 'toggle-side green' : 'toggle-side'} onClick={this.toggleSideBar.bind(this)}>
                     <i className='ion-navicon-round'></i>
                 </div>
+                <div onClick={actions.toggleSettingsModal.bind(this)} className="settings-button">
+                    <i className="ion-gear-a"></i>
+                </div>
                 <div className='search-container'>
-                    {isMobile ? null : <h5 className='search-text'> search </h5>}
                     <DropDown key={'in'} list={search['in']} {...actions} {...{name : 'in', placeholder : this.getInPlaceholder()}} />
-                    {isMobile ? null : <h5 className='search-text'> about </h5>}
                     <input
                         className='search-text search-input'
-                        placeholder='SOMETHING'
+                        placeholder='SEARCH'
                         value={search.for || ''}
                         autoFocus='true'
                         onChange={::this.onChange}
-                        onKeyDown={::this.search}/>
-                    <div className="search-button">
-                        <div style={{'top' : '5px', 'position' : 'relative'}}>
-                            <i className="ion-ios-search-strong"></i>
-                        </div>
+                        onKeyDown={::this.search}
+                    />
+                    <div onClick={this.search.bind(this)} className="search-button">
+                        <i className="ion-ios-search-strong"></i>
                     </div>
                 </div>
             </div>

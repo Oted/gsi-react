@@ -31,21 +31,17 @@ export default class Lists extends Component {
         const { fragments, actions, suggestions } = this.props;
 
         return (<div>
+            {this.info()}
             {this.generateSuggestions(suggestions)}
             {fragments.trending ? this.generateList('trending') : null}
-            {fragments.popular ? this.generateList('popular') : null}
+            {fragments.random ? this.generateList('random') : null}
             {fragments.fresh ? this.generateList('fresh') : null}
-            {this.info()}
         </div>);
     }
 
     info() {
         return (
             <div className='list social-container'>
-                <span className='blue' onClick={this.openFeedback.bind(this)}> we
-                    <span style={{color:'red'}}> ❤ </span>
-                        your feedback
-                    </span>
                 <a target='_blank' href='http://twitter.com/GetSomeInternet' className='twitter-colour'>
                     <i className='ion-social-twitter'></i>
                 </a>
@@ -55,6 +51,9 @@ export default class Lists extends Component {
                 <a target='_blank' href='http://www.facebook.com/getsomeinternet/' className='facebook-colour'>
                     <i className='ion-social-facebook'></i>
                 </a>
+                <span className='blue' onClick={this.openFeedback.bind(this)}> we
+                    <span className='heart' style={{color:'red'}}> ❤ </span> your feedback
+                </span>
             </div>
         )
     }

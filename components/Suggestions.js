@@ -33,9 +33,17 @@ export default class Suggestions extends Component {
                 {value =>
                     <div
                     onClick={that.modalClick.bind(that)}
-                    style={{transform: 'scale(' + value.scale + ')'}} id='suggestion-modal'>
+                    style={{transform: 'scale(' + value.scale + ')'}} className='modal'>
                         <h3> What are you looking for today? </h3>
                         <div className='suggestions'>
+                            <div
+                            onClick={that.props.actions.toggleSuggestView.bind(that)}
+                            className='suggestion'>
+                                <div className='blue'>
+                                    <i className='ion-play'></i>
+                                </div>
+                                <h4> everything </h4>
+                            </div>
                             {suggestions.map(suggestion => {
                                 return (<div onClick={that.suggestClick.bind(that, suggestion)}
                                         className='suggestion'>
@@ -45,14 +53,6 @@ export default class Suggestions extends Component {
                                     <h4> {suggestion.name} </h4>
                                 </div>)
                             })}
-                            <div
-                            onClick={that.props.actions.toggleSuggestView.bind(that)}
-                            className='suggestion'>
-                                <div className='blue'>
-                                    <i className='ion-play'></i>
-                                </div>
-                                <h4> everything </h4>
-                            </div>
                         </div>
                     </div>
                 }

@@ -9,6 +9,7 @@ let isMobile = utils.checkIfNotDesktop();
 if (isMobile) {
     defaultState.is_mobile = true;
     defaultState.side_bar = false;
+    defaultState.autoplay = false;
 }
 
 let initState = _.merge({}, defaultState, storage.loadState());
@@ -41,6 +42,12 @@ export default function gsi(state = initState, action) {
 
         case actions.SET_SEARCH_TEXT:
             return _.merge({}, state, {'search' : {'for' : action.text}});
+
+        case actions.TOGGLE_AUTOPLAY:
+            return _.merge({}, state, {'autoplay' : !state.autoplay});
+
+        case actions.TOGGLE_SETTINGS_VIEW:
+            return _.merge({}, state, {'settings_view' : !state.settings_view});
 
         case actions.TOGGLE_SUGGEST_VIEW:
             return _.merge({}, state, {'suggest_view' : !state.suggest_view});

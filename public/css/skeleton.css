@@ -57,7 +57,7 @@
     margin-right:1rem;
   }
 
-  #suggestion-modal {
+  .modal {
     width:95%;
   }
 
@@ -93,7 +93,7 @@
   }
 
   .toggle-side {
-    padding-left: 0rem;
+    padding-left: 1rem;
   }
 
   .scroll-stage {
