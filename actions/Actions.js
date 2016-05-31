@@ -166,7 +166,6 @@ export function init() {
         }
 
         return api.getFragments().then(function(allRes) {
-            console.log('gere', allRes);
             let fragments = {
                 'trending' : allRes[0].body,
                 'fresh' : allRes[1].body,
