@@ -17,12 +17,6 @@ export default class InfoBox extends Component {
     render() {
         const { queries, actions } = this.props;
 
-        if (!this.props.isLoading) {
-            this.state.spun = 0;
-        } else {
-            this.maybeSpin();
-        }
-
         return (
             <div className='info-box'>
                 <img id='logo-play' className='logo-top' src={'./' + prefix + 'common/logo_eye.png'}></img>
@@ -31,26 +25,5 @@ export default class InfoBox extends Component {
                 { queries.length ? <h4> { queries[queries.length - 1].results } things to view </h4> : null }
             </div>
         );
-    }
-
-    maybeSpin() {
-        this.state.spun++;
-        var that = this;
-        let deg = 360;
-        var e = document.getElementById('logo-text-top');
-
-        if (!e || !this.props.isLoading) {
-            return;
-        }
-
-        e.rotation = e.rotation ? e.rotation + deg : deg;
-        e.style.webkitTransform = 'rotate(' + e.rotation + 'deg)';
-        e.style.transform = 'rotate(' + e.rotation + 'deg)';
-
-        setTimeout(function(){
-            if (that.props.isLoading && that.state.spun < 10) {
-                that.maybeSpin();
-            }
-        }, 1500);
     }
 }

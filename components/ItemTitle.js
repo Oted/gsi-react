@@ -23,12 +23,23 @@ export default class ItemTitle extends Component {
 
     addTitleFragments(item, words, fragments) {
         var that = this;
+        var glowed = false;
 
         return (<h5> { words.map(word => {
                 const strip = word.toLowerCase().replace(/[^a-zA-Z\d\s:]/g, '').trim();
+
                 if (fragments.indexOf(strip) > -1) {
-                    return (<span className='title-fragment'
-                            onClick={::that.onClick.bind(that, strip)}> {word} </span>)
+                    const shouldGlow = Math.random() < 0.073;
+
+                    var el = (<span
+                        className={!glowed && shouldGlow ? 'title-fragment text-glow' : 'title-fragment'}
+                        onClick={that.onClick.bind(that, strip)}> {word} </span>)
+
+                    if (shouldGlow) {
+                        glowed = true;
+                    }
+
+                    return el;
                 }
 
                 return (<span> {word} </span>);

@@ -76,6 +76,12 @@ export function getFragments(type) {
     return Promise.all([
         request.get(prefix + '/api/fragments?type=trending&amount=' + amount).use(superagentPromise),
         request.get(prefix + '/api/fragments?type=fresh&amount=' + amount).use(superagentPromise),
-        request.get(prefix + '/api/fragments?type=random&amount=' + amount).use(superagentPromise)
+        request.get(prefix + '/api/fragments?type=highlighted&amount=' + 10).use(superagentPromise)
     ]);
+};
+
+export function getRelatedFragments(fragment) {
+    return request
+        .get(prefix + '/api/relatedfragments?fragment=' + fragment)
+        .use(superagentPromise);
 };

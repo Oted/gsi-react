@@ -30,7 +30,8 @@ export default class Youtube extends Component {
                         'width' : '1280',
                         playerVars: {
                             autoplay: 1,
-                            iv_load_policy : 3
+                            iv_load_policy : 3,
+                            fs: 0
                         }
                     }
                 }

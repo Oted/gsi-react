@@ -2,6 +2,22 @@ import * as actions from '../constants/ActionTypes';
 import * as api from '../utils/Api';
 import * as utils from '../utils/Utils';
 
+export function sendGAData(category, type, label) {
+    return {
+        category,
+        label,
+        type: actions.SEND_GA_DATA,
+        ga_type: type
+    };
+}
+
+export function seenTooltip(tooltip) {
+    return {
+        type: actions.SEEN_TOOLTIP,
+        tooltip
+    };
+}
+
 export function toggleSearchType(list, item) {
     return {
         type: actions.TOGGLE_SEARCH_TYPE,
@@ -121,6 +137,25 @@ export function seenItems(res) {
     };
 }
 
+export function gotRelatedFragments(err, res) {
+    return {
+        type: actions.GOT_RELATED_FRAGMENTS,
+        res,
+        err
+    };
+}
+
+/**
+ *  Thunks below
+ */
+export function getRelatedFragments(fragment) {
+    return (dispatch) => {
+        return api.getRelatedFragments(fragment).then(function(res) {
+            return dispatch(gotRelatedFragments(null, res.body));
+        });
+    }
+}
+
 export function viewItem(hash, item = null) {
     return (dispatch) => {
         if (item) {
@@ -133,9 +168,6 @@ export function viewItem(hash, item = null) {
     }
 }
 
-/**
- *  Thunks below
- */
 export function shineLogo() {
     return (dispatch, getState) => {
         var e = document.getElementById('logo-bright-top');
@@ -169,7 +201,7 @@ export function init() {
             let fragments = {
                 'trending' : allRes[0].body,
                 'fresh' : allRes[1].body,
-                'random' : allRes[2].body
+                'highlighted' : allRes[2].body
             };
 
             return dispatch(gotFragments(fragments));
@@ -217,10 +249,13 @@ export function getQueryWithHash(hash) {
 export function search(term) {
     return (dispatch, getState) => {
         const { search } = getState().gsi;
+
+        dispatch(sendGAData('SET_SEARCH_TEXT', 'SEARCH', term || search.for));
         dispatch(scrollToPosition(0));
         dispatch(unviewItem());
         dispatch(shineLogo());
         dispatch(loadingItems(true));
+        dispatch(getRelatedFragments(term || search.for));
 
         return api.getItems(
                 term ? term : search.for,

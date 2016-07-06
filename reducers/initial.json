@@ -64,14 +64,20 @@
     "is_mobile": false,
     "suggest_view" : true,
     "settings_view" : false,
+    "fetch_count" : 0,
     "autoplay" : true,
     "side_bar" : true,
     "single_view" : null,
     "default_list" : "1865b4d72ca745467bcff1c12c15dca9",
+    "related_fragments" : [],
     "fragments" : {},
     "queries" : [],
     "lists" : {},
     "seen" : {},
+    "tooltips" :{
+        "search" : false,
+        "related" : false
+    },
     "search": {
         "isLoading": false,
         "for": "",

@@ -74,19 +74,23 @@ export default class ItemFooter extends Component {
     }
 
     goToSource() {
+        this.props.actions.sendGAData('GO_TO_SOURCE', 'CLICK', this.props.item._hash);
         window.open(this.props.item.source);
     }
 
     inspect() {
+        this.props.actions.sendGAData('INSPECT', 'CLICK', this.props.item._hash);
         window.open('http://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 
     copyLinkPrompt() {
+        this.props.actions.sendGAData('SHARE', 'CLICK', this.props.item._hash);
         prompt('Copy the link below and share with beloved friends and foes!',
                           'http://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 
     twitterShare() {
+        this.props.actions.sendGAData('SHARE', 'CLICK', this.props.item._hash);
         window.open('https://twitter.com/intent/tweet?text=' +
                 this.props.item.title +
                 '&url=http://getsomeinternet.com/thing/' +
@@ -94,6 +98,7 @@ export default class ItemFooter extends Component {
     }
 
     facebookShare() {
+        this.props.actions.sendGAData('SHARE', 'CLICK', this.props.item._hash);
         window.open('https://www.facebook.com/sharer/sharer.php?u=http://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 }

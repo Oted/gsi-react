@@ -9,12 +9,14 @@ export default class Suggestions extends Component {
     suggestClick(suggestion) {
         var that = this;
 
+        this.props.actions.getRelatedFragments(suggestion.name || suggestion.search);
+
         suggestion.hash ?
             this.props.actions.getQueryWithHash(suggestion.hash) :
             this.props.actions.search(suggestion.search);
 
         return setTimeout(function() {
-            that.props.actions.toggleSuggestView()
+            that.props.actions.toggleSuggestView();
         }, 100);
     }
 

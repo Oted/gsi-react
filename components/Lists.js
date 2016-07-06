@@ -22,6 +22,8 @@ export default class Lists extends Component {
             this.props.actions.toggleSideBar();
         }
 
+        this.props.actions.getRelatedFragments(suggestion.name || suggestion.search);
+
         suggestion.hash ?
             this.props.actions.getQueryWithHash(suggestion.hash) :
             this.props.actions.search(suggestion.search);
@@ -31,11 +33,10 @@ export default class Lists extends Component {
         const { fragments, actions, suggestions } = this.props;
 
         return (<div>
-            {this.info()}
             {this.generateSuggestions(suggestions)}
             {fragments.trending ? this.generateList('trending') : null}
-            {fragments.random ? this.generateList('random') : null}
             {fragments.fresh ? this.generateList('fresh') : null}
+            {this.info()}
         </div>);
     }
 

@@ -16,6 +16,7 @@ import ItemFooter from '../components/ItemFooter';
 export default class ScrollStage extends Component {
     constructor(props) {
         super(props);
+        this.scrollCounter = 0;
 
         this.state = {
             additionalItemHeigth : props.isMobile ? 125 : 100,
@@ -34,7 +35,8 @@ export default class ScrollStage extends Component {
                         height: '390',
                         playerVars: {
                             autoplay: 0,
-                            iv_load_policy : 3
+                            iv_load_policy : 3,
+                            fs: 0
                         }
                     }
                 },
@@ -85,6 +87,11 @@ export default class ScrollStage extends Component {
     }
 
     handleScroll(node) {
+        this.scrollCounter++
+        if (this.scrollCounter % 10 !== 0) {
+            return;
+        }
+
         let position = window.pageYOffset || document.documentElement.scrollTop;
 
         let h = -window.innerHeight / 4;
@@ -106,42 +113,40 @@ export default class ScrollStage extends Component {
 
     render() {
         if (!this.props.lists[this.props.query._hash]) {
-            return (<div></div>);
+            return (<div>
+                <h5> Sorry, no items matches this search 😓  </h5>
+            </div>);
         }
 
         if (!this.props.lists[this.props.query._hash].items.length) {
             return (<div>
-                <h5> Sorry, no items matches this search </h5>
+                <h5> Sorry, no items matches this search 😓  </h5>
             </div>);
         }
 
         const list = this.props.lists[this.props.query._hash];
         const { actions } = this.props;
 
-        return (<Motion defaultStyle={{x: 0}} style={{x: spring(1)}}>
-            {value =>
-                <div style={{opacity : value.x}} id='scroll-container'>
-                    <Infinite
-                        handleScroll={::this.handleScroll}
-                        useWindowAsScrollContainer
-                        elementHeight={this.getHeights(list.items)}
-                        infiniteLoadBeginEdgeOffset={2000}
-                        onInfiniteLoad={::this.handleInfiniteLoad}
-                        preloadBatchSize={Infinite.containerHeightScaleFactor(3)}>
-                            {this.buildElements(list.items)}
-                    </Infinite>
-                    <div
-                        style={{'opacity' : list.currentIndex >= 1 ? (list.currentIndex - 2) / 4 : 0}}
-                        className='scroll-back'
-                        onClick={::this.scrollToTop}>
-                        <i className="ion-chevron-up"></i>
-                    </div>
-                </div>
-            }
-        </Motion>);
+        return (<div id='scroll-container'>
+            <Infinite
+                handleScroll={::this.handleScroll}
+                useWindowAsScrollContainer
+                elementHeight={this.getHeights(list.items)}
+                infiniteLoadBeginEdgeOffset={3000}
+                onInfiniteLoad={this.handleInfiniteLoad}
+                preloadBatchSize={Infinite.containerHeightScaleFactor(1)}>
+                    {this.buildElements(list.items)}
+            </Infinite>
+            <div
+                style={{'opacity' : list.currentIndex >= 1 ? (list.currentIndex - 2) / 4 : 0}}
+                className='scroll-back'
+                onClick={::this.scrollToTop}>
+                <i className="ion-chevron-up"></i>
+            </div>
+        </div>);
     }
 
-    handleInfiniteLoad() {
+    handleInfiniteLoad = () => {
         if (!this.props.isLoading) {
             this.props.actions.fetch();
         }
