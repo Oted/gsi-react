@@ -80,13 +80,13 @@ export default class ItemFooter extends Component {
 
     inspect() {
         this.props.actions.sendGAData('INSPECT', 'CLICK', this.props.item._hash);
-        window.open('http://getsomeinternet.com/thing/' + this.props.item._hash);
+        window.open('https://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 
     copyLinkPrompt() {
         this.props.actions.sendGAData('SHARE', 'CLICK', this.props.item._hash);
         prompt('Copy the link below and share with beloved friends and foes!',
-                          'http://getsomeinternet.com/thing/' + this.props.item._hash);
+                          'https://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 
     twitterShare() {
@@ -99,6 +99,6 @@ export default class ItemFooter extends Component {
 
     facebookShare() {
         this.props.actions.sendGAData('SHARE', 'CLICK', this.props.item._hash);
-        window.open('https://www.facebook.com/sharer/sharer.php?u=http://getsomeinternet.com/thing/' + this.props.item._hash);
+        window.open('https://www.facebook.com/sharer/sharer.php?u=https://getsomeinternet.com/thing/' + this.props.item._hash);
     }
 }
