@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "gsi frotend",
   "scripts": {
-    "start": "webpack --progress --colors --watch & http-server ./ & open http://localhost:8080/public/index.html",
+    "start": "webpack --progress --colors --watch & http-server ./public/ & open http://localhost:8080/index.html",
     "build": "webpack -p"
   },
   "author": "Oted",

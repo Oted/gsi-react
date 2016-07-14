@@ -1,0 +1,7 @@
+{
+  "name": "Get Some Internet",
+  "short_name": "GSI",
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "1003048285368"
+}

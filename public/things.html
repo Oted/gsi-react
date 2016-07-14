@@ -38,8 +38,19 @@
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/skeleton.css">
     <link rel="stylesheet" href="/css/ionicons.min.css">
+    <link rel="manifest"   href="/manifest.json">
 
      <meta name="google-site-verification" content="05Ljy3vvlIwwLSwjtnU_UisztIEPXWreGx2zoguypu0" />
+    <script>
+      var OneSignal = OneSignal || [];
+      OneSignal.push(["init", {
+        appId: "6647d67c-167b-4d70-bca4-3f82c235e594",
+        autoRegister: false,
+        notifyButton: {
+          enable: true /* Set to false to hide */
+        }
+      }]);
+    </script>
   </head>
   <body>
     <section id="root"></section>
