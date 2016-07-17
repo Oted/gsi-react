@@ -78,7 +78,7 @@ export default class SearchBar extends Component {
                         opacity: should_show_related_tooltip ? 1 : 0}}>
                         Hey! <br/> We found some other things you might like 🚀
                     </ToolTip>
-                    {highlights.slice(0,7).map(function(fragment) {
+                    {highlights.slice(0, isMobile ? 0 : 7).map(function(fragment) {
                         return (<span className='highlight-fragment' onClick={that.highlightClick.bind(that, fragment)}> {fragment} </span>);
                     })}
                 </div>
@@ -88,7 +88,6 @@ export default class SearchBar extends Component {
                     <i className="ion-gear-a"></i>
                 </div>
                 <div className='search-container'>
-                    {isMobile ? <DropDown key={'in'}  {...actions} {...{name : 'in', placeholder : this.getInPlaceholder()}} /> : null}
                     <div style={{position:'relative', display:'inline-block'}}>
                         <input
                             className='search-text search-input'

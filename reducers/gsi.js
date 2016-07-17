@@ -6,9 +6,19 @@ import defaultState from './initial.json';
 
 var ReactGA = require('react-ga');
 
+//if this is !development do stuff
 if (process.env.NODE_ENV === "production") {
     ReactGA.initialize('UA-68224459-1');
     ReactGA.pageview(window.location.pathname);
+
+    //onesignal needs to know that were initializing
+    OneSignal.push(["init", {
+        appId: "6647d67c-167b-4d70-bca4-3f82c235e594",
+        autoRegister: false,
+        notifyButton: {
+            enable: false
+        }
+    }]);
 }
 
 let sendGAData = function(data) {
@@ -37,6 +47,9 @@ export default function gsi(state = initState, action) {
 
     switch (action.type) {
         case actions.SEND_GA_DATA:
+            if (action.category === "SET_SEARCH_TEXT") {
+                OneSignal.sendTag(action.label, true);
+            }
 
             sendGAData({category: action.category, action: action.ga_type, label: action.label});
             return state;

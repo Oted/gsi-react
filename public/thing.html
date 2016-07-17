@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="keywords"       content="internet, entertainment, get some internet, gsi, boredom, bored, {{fragments}}"/>
-    <meta name="description"    content="A new way to discover the internet"/>
+    <meta name="description"    content="A new way to explore the internet. Enjoy endless feeds of documentaries, memes, music and much more."/>
     <link rel="canonical"       href="{{{url}}}"/>
 
     <link rel="icon" type="image/png" href="/common/favicon-32x32.png" sizes="32x32" />
@@ -106,19 +106,9 @@
     <link rel="stylesheet" href="/css/skeleton.css">
     <link rel="stylesheet" href="/css/ionicons.min.css">
     <link rel="manifest"   href="/manifest.json">
-
-    <script>
-      var OneSignal = OneSignal || [];
-      OneSignal.push(["init", {
-        appId: "6647d67c-167b-4d70-bca4-3f82c235e594",
-        autoRegister: false,
-        notifyButton: {
-          enable: true /* Set to false to hide */
-        }
-      }]);
-    </script>
-
-     <meta name="google-site-verification" content="05Ljy3vvlIwwLSwjtnU_UisztIEPXWreGx2zoguypu0" />
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+    <script>var OneSignal = OneSignal || [];</script>
+    <meta name="google-site-verification" content="05Ljy3vvlIwwLSwjtnU_UisztIEPXWreGx2zoguypu0" />
   </head>
   <body>
     <section id="root"></section>

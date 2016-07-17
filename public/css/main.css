@@ -76,7 +76,7 @@ body {
     }
 
     to {
-        text-shadow: 0px 0px 3px #00D000;
+        text-shadow: 0px 0px 1px #00D000;
         color: #00D000;
     }
 }
@@ -385,6 +385,7 @@ body {
     border-radius: 3px;
     padding-top: 14rem;
     padding-right: 1rem;
+    padding-bottom:1rem;
     padding-left: 1rem;
     margin-bottom: 1rem;
     -webkit-box-pack: center;
@@ -395,6 +396,10 @@ body {
     border: 1px solid #E1E8ED;
     text-align: center;
     background-color: white;
+}
+
+.info-box > span {
+    cursor:pointer;
 }
 
 .logo-top {

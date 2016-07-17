@@ -34,7 +34,7 @@ export default class Vimeo extends Component {
             scrolling="no"
             autostart={isCurrent ? '0' : '1'}
             autoplay={isCurrent ? 'false' : 'true'}
-            src={'http://player.vimeo.com/video/' + item.data.split('/').pop() + '?autoplay=' + 1 + '&api=1&player_id=' + 'vimeoplayer'}>
+            src={'https://player.vimeo.com/video/' + item.data.split('/').pop() + '?autoplay=' + 1 + '&api=1&player_id=' + 'vimeoplayer'}>
         </iframe>)
     };
 }
