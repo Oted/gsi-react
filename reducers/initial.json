@@ -64,6 +64,7 @@
     "is_mobile": false,
     "suggest_view" : true,
     "settings_view" : false,
+    "subscribe_view" : false,
     "fetch_count" : 0,
     "autoplay" : true,
     "side_bar" : true,
@@ -74,7 +75,7 @@
     "queries" : [],
     "lists" : {},
     "seen" : {},
-    "tooltips" :{
+    "tooltips" : {
         "search" : false,
         "related" : false
     },

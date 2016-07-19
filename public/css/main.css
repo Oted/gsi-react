@@ -398,8 +398,21 @@ body {
     background-color: white;
 }
 
-.info-box > span {
+.notify-button {
+    margin-left: 15%;
+    margin-right: 15%;
+    display:block;
+    border: 1px solid gray;
+    cursor: pointer;
+    background:rgba(106, 189, 69, 0.9);
+    border-radius: 3px;
+    font-size: 2rem;
+    padding: 0.5rem;
     cursor:pointer;
+}
+
+.notify-button:hover {
+    background: #00D000;
 }
 
 .logo-top {
@@ -650,7 +663,7 @@ body {
     height: 100%;
     width: 100%;
     z-index: 15;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.9);
 }
 
 .modal {
@@ -671,6 +684,13 @@ body {
     margin-left:auto;
     margin-right:auto;
     box-shadow: 0 20px 80px rgba(0, 0, 0, 0.2);
+}
+
+.subscribe-view {
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    top:12rem;
+    font-size: 2rem;
+    width:55%;
 }
 
 .toggle-button {

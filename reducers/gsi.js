@@ -16,7 +16,8 @@ if (process.env.NODE_ENV === "production") {
         appId: "6647d67c-167b-4d70-bca4-3f82c235e594",
         autoRegister: false,
         notifyButton: {
-            enable: false
+            enable: false,
+            showCredit : false
         }
     }]);
 }
@@ -37,8 +38,8 @@ if (isMobile) {
     defaultState.autoplay = false;
 }
 
-let initState = _.merge({}, defaultState, storage.loadState());
-// let initState = _.merge({}, defaultState, {});
+// let initState = _.merge({}, defaultState, storage.loadState());
+let initState = _.merge({}, defaultState, {});
 
 export default function gsi(state = initState, action) {
     if (process.env.NODE_ENV !== 'production') {

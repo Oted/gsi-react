@@ -10,12 +10,25 @@ import Suggestions from '../components/Suggestions';
 import Settings from '../components/SettingsModal';
 import InfoBox from '../components/InfoBox';
 import SingleView from '../components/SingleView';
+import SubscribeView from '../components/SubscribeView';
 import Lists from '../components/Lists';
 
 class GSIApp extends Component {
     constructor(props) {
         super(props);
+        var that = this;
         props.actions.init();
+
+        //if this is production the notification for push stuff needs to be enabled
+        if (process.env.NODE_ENV === "production") {
+            (OneSignal || []).push(["isPushNotificationsEnabled", function(enabled) {
+                that.showSubscription = !enabled && OneSignal.isPushNotificationsSupported();
+            }]);
+        } else {
+            setTimeout(function() {
+                that.showSubscription = true;
+            }, 100);
+        }
     }
 
     render() {
@@ -33,10 +46,10 @@ class GSIApp extends Component {
                    search={gsi.search}
                    actions={actions}
                 />
-
+                {this.showSubscription === true ? <SubscribeView fetch_count={gsi.fetch_count} actions={actions}/> : null }
                 {gsi.single_view ?
                     <div className='content-container'>
-                        {gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries} /> : null}
+                        {gsi.queries.length ? <BreadCrumbs lists={gsi.lists} actions={actions} queries={gsi.queries}/> : null}
                         <div className='twelve columns'>
                             <SingleView
                                 item={gsi.single_view}
@@ -64,6 +77,7 @@ class GSIApp extends Component {
                             <InfoBox
                                 isLoading={gsi.search.isLoading}
                                 actions={actions}
+                                showSubscription={this.showSubscription === true}
                                 queries={gsi.queries}/>
 
                             <Lists
