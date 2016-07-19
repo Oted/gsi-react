@@ -38,8 +38,8 @@ if (isMobile) {
     defaultState.autoplay = false;
 }
 
-// let initState = _.merge({}, defaultState, storage.loadState());
-let initState = _.merge({}, defaultState, {});
+let initState = _.merge({}, defaultState, storage.loadState());
+// let initState = _.merge({}, defaultState, {});
 
 export default function gsi(state = initState, action) {
     if (process.env.NODE_ENV !== 'production') {

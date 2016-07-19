@@ -24,19 +24,25 @@ export default class SubscribeView extends Component {
         return OneSignal.push(["registerForPushNotifications", {
             modalPrompt: false
         }]);
-    }
-
-    modalClick(e) {
-        e.stopPropagation();
 
         setTimeout(() => {
             this.setState({notify : false});
         }, 100);
     }
 
+    modalClick(e) {
+        e.stopPropagation();
+    }
+
     render() {
         if (!this.state.notify) {
-            return (<div className='subscribe-modal'></div>);
+            return (<div className='modal subscribe-view far-left transparent'>
+                <h4> DON'T MISS OUT! </h4>
+                <div style={{'margin' : '2rem'}}>
+                    <span> Tell me about the best internet trends, as they happen. </span>
+                </div>
+                <span className='notify-button' onClick={this.notifyMe}> Enable notifications </span>
+            </div>);
         }
 
         const { queries, actions } = this.props;
