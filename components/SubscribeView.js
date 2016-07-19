@@ -21,7 +21,7 @@ export default class SubscribeView extends Component {
     }
 
     notifyMe() {
-        return OneSignal.push(["registerForPushNotifications", {
+        OneSignal.push(["registerForPushNotifications", {
             modalPrompt: false
         }]);
 
