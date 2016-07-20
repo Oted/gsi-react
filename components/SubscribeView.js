@@ -41,7 +41,7 @@ export default class SubscribeView extends Component {
                 <div style={{'margin' : '2rem'}}>
                     <span> Tell me about the best internet trends, as they happen. </span>
                 </div>
-                <span className='notify-button' onClick={this.notifyMe}> Enable notifications </span>
+                <span className='notify-button' onClick={this.notifyMe.bind(this)}> Enable notifications </span>
             </div>);
         }
 
