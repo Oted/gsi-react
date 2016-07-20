@@ -9,7 +9,7 @@ export default class SubscribeView extends Component {
             this.setState({
                 'notify' : true
             })
-        }, 40000);
+        }, 4000);
 
         this.state = {
             'notify' : false
@@ -55,7 +55,7 @@ export default class SubscribeView extends Component {
                 <div style={{'margin' : '2rem'}}>
                     <span> Get notified about the craziest internet trends, as they happen. </span>
                 </div>
-                <span className='notify-button' onClick={this.notifyMe}> Enable notifications </span>
+                <span className='notify-button' onClick={this.notifyMe.bind(this)}> Enable notifications </span>
             </div>
         </div>);
     }
