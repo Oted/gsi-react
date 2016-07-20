@@ -9,7 +9,7 @@ export default class SubscribeView extends Component {
             this.setState({
                 'notify' : true
             })
-        }, 4000);
+        }, 35000);
 
         this.state = {
             'notify' : false
