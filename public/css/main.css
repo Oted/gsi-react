@@ -404,7 +404,7 @@ body {
     display:block;
     border: 1px solid gray;
     cursor: pointer;
-    background:rgba(106, 189, 69, 0.9);
+    background: #00D000;
     border-radius: 3px;
     font-size: 2rem;
     padding: 0.5rem;
@@ -412,7 +412,9 @@ body {
 }
 
 .notify-button:hover {
-    background: #00D000;
+    transition-duration: 0.25s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 .logo-top {

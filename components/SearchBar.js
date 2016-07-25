@@ -60,7 +60,7 @@ export default class SearchBar extends Component {
     render() {
         var that = this;
         const { search, actions, side_bar, isMobile, fetch_count, fragments, related_fragments } = this.props;
-        const should_show_search_tooltip  = !isMobile && !this.props.tooltips.search && window.scrollY > 15000;
+        const should_show_search_tooltip  = !isMobile && !this.props.tooltips.search && window.scrollY > 30000;
         const should_show_related_tooltip = !isMobile && !this.props.tooltips.related && related_fragments && related_fragments.length;
 
         //if there is a related list, use that otherwise fallback on a given highligts from fragments db
